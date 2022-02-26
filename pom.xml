@@ -16,12 +16,12 @@
     <name>memory</name>
     <description>Let's cherish our daily life !</description>
     <modules>
-<!--        <module>memory-commons</module>-->
-<!--        <module>memory-source</module>-->
+        <module>memory-commons</module>
+        <module>memory-source</module>
         <module>memory-server</module>
-<!--        <module>memory-mgmt-health</module>-->
-<!--        <module>memory-mgmt-education</module>-->
-<!--        <module>memory-mgmt-economy</module>-->
+        <module>memory-mgmt-health</module>
+        <module>memory-mgmt-education</module>
+        <module>memory-mgmt-economy</module>
     </modules>
 
 
