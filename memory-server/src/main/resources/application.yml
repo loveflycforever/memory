@@ -1,12 +1,16 @@
-#server:
-#  port: 18085
-#  servlet:
-#    context-path: /memory
-#
-#spring:
-#  servlet:
-#    multipart:
-#      max-file-size: -1
-#      max-request-size: -1
-#  profiles:
-#    active: dev
+server:
+  port: 18085
+  servlet:
+    context-path: /memory
+
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  profiles:
+    active: dev
+logging:
+  level:
+    root: info

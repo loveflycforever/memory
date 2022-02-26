@@ -19,6 +19,8 @@
 <!--        <module>memory-commons</module>-->
 <!--        <module>memory-source</module>-->
         <module>memory-server</module>
+<!--        <module>memory-mgmt-health</module>-->
+<!--        <module>memory-mgmt-education</module>-->
 <!--        <module>memory-mgmt-economy</module>-->
     </modules>
 
@@ -30,24 +32,9 @@
         <java.version>1.8</java.version>
         <encoding>UTF-8</encoding>
         <skipTests>true</skipTests>
-
-
-        <fluent-mybatis.version>1.8.7</fluent-mybatis.version>
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -79,19 +66,7 @@
             <version>30.1.1-jre</version>
         </dependency>
 
-        <!-- 引入fluent-mybatis 运行依赖包, scope为compile -->
-        <dependency>
-            <groupId>com.github.atool</groupId>
-            <artifactId>fluent-mybatis</artifactId>
-            <version>${fluent-mybatis.version}</version>
-        </dependency>
-        <!-- 引入fluent-mybatis-processor, scope设置为provider 编译需要，运行时不需要 -->
-        <dependency>
-            <groupId>com.github.atool</groupId>
-            <artifactId>fluent-mybatis-processor</artifactId>
-            <scope>provided</scope>
-            <version>${fluent-mybatis.version}</version>
-        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
