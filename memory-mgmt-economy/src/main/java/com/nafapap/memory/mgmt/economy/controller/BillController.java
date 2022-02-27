@@ -1,10 +1,11 @@
 package com.nafapap.memory.mgmt.economy.controller;
 
-import com.nafapap.memory.entities.Form;
+import com.nafapap.memory.source.Form;
 import com.nafapap.memory.mgmt.economy.data.AuthDto;
 import com.nafapap.memory.mgmt.economy.data.PageDto;
 import com.nafapap.memory.mgmt.economy.data.RequestDto;
 import com.nafapap.memory.mgmt.economy.service.BillService;
+import com.nafapap.memory.source.entity.FlowEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +44,7 @@ public class BillController {
 
     @PostMapping("/create")
     public String create(@RequestBody AuthDto dto) {
-        Flow flow = billService.createFlow();
+        FlowEntity flow = billService.createFlow();
         String flowNo = flow.getSerialNo();
         Form form = billService.createForm(flowNo);
         return String.format("Hello %s!", "");

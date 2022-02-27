@@ -1,7 +1,7 @@
 package com.nafapap.memory.mgmt.economy.service;
 
-import com.nafapap.memory.entities.Form;
-import com.nafapap.memory.entities.entity.FlowEntity;
+import com.nafapap.memory.source.Form;
+import com.nafapap.memory.source.entity.FlowEntity;
 
 /**
  * <p>Project: memory </p>
