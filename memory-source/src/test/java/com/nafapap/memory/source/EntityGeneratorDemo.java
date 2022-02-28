@@ -1,4 +1,4 @@
-package com.nafapap.memory.entities;
+package com.nafapap.memory.source;
 
 import cn.org.atool.generator.FileGenerator;
 import cn.org.atool.generator.annotation.*;
@@ -21,11 +21,11 @@ public class EntityGeneratorDemo {
 
     @Tables(// 设置数据库连接信息
             url = url, username = username, password = password,
-            tablePrefix = "m_",
+            tablePrefix = "t_",
             // 设置entity类生成src目录, 相对于 user.dir
             srcDir = "src/main/java",
             // 设置entity类的package值
-            basePack = "com.nafapap.memory.entities",
+            basePack = "com.nafapap.memory.source",
             // 设置dao接口和实现的src目录, 相对于 user.dir
             daoDir = "src/main/java",
             // 设置哪些表要生成Entity文件
@@ -36,7 +36,8 @@ public class EntityGeneratorDemo {
                     gmtModified = "operate_time",
                     version = "version",
                     value = {
-                            "flow"m_
+                            "t_flow",
+                            "t_thing"
                     })}
     )
     static class Empty { //类名随便取, 只是配置定义的一个载体

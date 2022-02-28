@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * FlowEntity: 数据映射实体定义
+ * ThingEntity: 数据映射实体定义
  *
  * @author Powered By Fluent Mybatis
  */
@@ -25,10 +25,10 @@ import lombok.experimental.Accessors;
     callSuper = false
 )
 @FluentMybatis(
-    table = "t_flow",
+    table = "t_thing",
     schema = "s_memory"
 )
-public class FlowEntity extends RichEntity {
+public class ThingEntity extends RichEntity {
   private static final long serialVersionUID = 1L;
 
   /**
@@ -79,10 +79,22 @@ public class FlowEntity extends RichEntity {
   private String creatorName;
 
   /**
+   * 有效日期
+   */
+  @TableField("expiration_date")
+  private String expirationDate;
+
+  /**
    * 类型
    */
   @TableField("genre")
   private Integer genre;
+
+  /**
+   * 名称
+   */
+  @TableField("name")
+  private String name;
 
   /**
    * 操作人
@@ -95,6 +107,12 @@ public class FlowEntity extends RichEntity {
    */
   @TableField("operator_name")
   private String operatorName;
+
+  /**
+   * 生产日期
+   */
+  @TableField("production_date")
+  private String productionDate;
 
   /**
    * 备注
@@ -115,6 +133,12 @@ public class FlowEntity extends RichEntity {
   private Integer status;
 
   /**
+   * 概要
+   */
+  @TableField("summary")
+  private String summary;
+
+  /**
    * 版本
    */
   @TableField(
@@ -127,6 +151,6 @@ public class FlowEntity extends RichEntity {
 
   @Override
   public final Class entityClass() {
-    return FlowEntity.class;
+    return ThingEntity.class;
   }
 }

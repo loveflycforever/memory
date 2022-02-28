@@ -1,12 +1,13 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
 import com.nafapap.memory.commons.enums.Operator;
-import com.nafapap.memory.entities.Form;
+import com.nafapap.memory.source.Form;
 import com.nafapap.memory.mgmt.economy.data.UserBa;
 import com.nafapap.memory.mgmt.economy.repository.FlowMapper;
 import com.nafapap.memory.mgmt.economy.service.BillService;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.UserService;
+import com.nafapap.memory.source.entity.FlowEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +37,8 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public Flow createFlow() {
-        Flow flow = new Flow();
+    public FlowEntity createFlow() {
+        FlowEntity flow = new FlowEntity();
         flow.setSerialNo(serialNoService.generate());
         //flowMapper
         return null;
