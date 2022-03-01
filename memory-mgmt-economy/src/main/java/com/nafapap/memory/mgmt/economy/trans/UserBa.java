@@ -1,4 +1,4 @@
-package com.nafapap.memory.mgmt.economy.data;
+package com.nafapap.memory.mgmt.economy.trans;
 
 import com.nafapap.memory.commons.enums.Operator;
 

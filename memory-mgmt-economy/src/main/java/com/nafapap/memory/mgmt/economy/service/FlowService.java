@@ -1,6 +1,6 @@
 package com.nafapap.memory.mgmt.economy.service;
 
-import com.nafapap.memory.source.Form;
+import com.nafapap.memory.source.entity.FormEntity;
 import com.nafapap.memory.source.entity.FlowEntity;
 
 /**
@@ -13,10 +13,8 @@ import com.nafapap.memory.source.entity.FlowEntity;
  * @author yuchaofan
  * @version v1.0
  */
-public interface BillService {
+public interface FlowService {
     FlowEntity createFlow();
-
-    Form createForm(String flowNo);
 
     void ensure(String takingNo, String operator, String userToken);
 }

@@ -1,10 +1,10 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
 import com.nafapap.memory.commons.enums.Operator;
-import com.nafapap.memory.source.Form;
-import com.nafapap.memory.mgmt.economy.data.UserBa;
+import com.nafapap.memory.source.entity.FormEntity;
+import com.nafapap.memory.mgmt.economy.trans.UserBa;
 import com.nafapap.memory.mgmt.economy.repository.FlowMapper;
-import com.nafapap.memory.mgmt.economy.service.BillService;
+import com.nafapap.memory.mgmt.economy.service.FlowService;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.UserService;
 import com.nafapap.memory.source.entity.FlowEntity;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
  * @version v1.0
  */
 @Service
-public class BillServiceImpl implements BillService {
+public class FlowServiceImpl implements FlowService {
 
     private final UserService userService;
     private final SerialNoService serialNoService;
@@ -30,7 +30,7 @@ public class BillServiceImpl implements BillService {
     private final FlowMapper flowMapper;
 
     @Autowired
-    public BillServiceImpl(UserService userService, SerialNoService serialNoService, FlowMapper flowMapper) {
+    public FlowServiceImpl(UserService userService, SerialNoService serialNoService, FlowMapper flowMapper) {
         this.userService = userService;
         this.serialNoService = serialNoService;
         this.flowMapper = flowMapper;
@@ -41,11 +41,6 @@ public class BillServiceImpl implements BillService {
         FlowEntity flow = new FlowEntity();
         flow.setSerialNo(serialNoService.generate());
         //flowMapper
-        return null;
-    }
-
-    @Override
-    public Form createForm(String flowNo) {
         return null;
     }
 

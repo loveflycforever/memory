@@ -37,7 +37,8 @@ public class EntityGeneratorDemo {
                     version = "version",
                     value = {
                             "t_flow",
-                            "t_thing"
+                            "t_thing",
+                            "t_form"
                     })}
     )
     static class Empty { //类名随便取, 只是配置定义的一个载体
