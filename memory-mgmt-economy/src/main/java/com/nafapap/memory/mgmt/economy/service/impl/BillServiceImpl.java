@@ -1,15 +1,17 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
 import com.nafapap.memory.commons.enums.Operator;
-import com.nafapap.memory.source.entity.FormEntity;
+import com.nafapap.memory.mgmt.economy.trans.PageDto;
 import com.nafapap.memory.mgmt.economy.trans.UserBa;
-import com.nafapap.memory.mgmt.economy.repository.FlowMapper;
-import com.nafapap.memory.mgmt.economy.service.FlowService;
+import com.nafapap.memory.mgmt.economy.repository.FlowRepository;
+import com.nafapap.memory.mgmt.economy.service.BillService;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.UserService;
 import com.nafapap.memory.source.entity.FlowEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>Project: memory </p>
@@ -22,18 +24,18 @@ import org.springframework.stereotype.Service;
  * @version v1.0
  */
 @Service
-public class FlowServiceImpl implements FlowService {
+public class BillServiceImpl implements BillService {
 
     private final UserService userService;
     private final SerialNoService serialNoService;
 
-    private final FlowMapper flowMapper;
+    private final FlowRepository flowRepository;
 
     @Autowired
-    public FlowServiceImpl(UserService userService, SerialNoService serialNoService, FlowMapper flowMapper) {
+    public BillServiceImpl(UserService userService, SerialNoService serialNoService, FlowRepository flowRepository) {
         this.userService = userService;
         this.serialNoService = serialNoService;
-        this.flowMapper = flowMapper;
+        this.flowRepository = flowRepository;
     }
 
     @Override
@@ -50,5 +52,10 @@ public class FlowServiceImpl implements FlowService {
         user.will(Operator.valueOf(operator)).with(takingNo);
 
 
+    }
+
+    @Override
+    public List<FlowEntity> showFlows(PageDto dto) {
+        return flowRepository.select(dto);
     }
 }

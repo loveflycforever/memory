@@ -1,6 +1,7 @@
 package com.nafapap.memory.mgmt.economy.trans;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * <p>Project: memory </p>
@@ -12,7 +13,17 @@ import lombok.Data;
  * @author yuchaofan
  * @version v1.0
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class PageDto {
-    private String userToken;
+public class PageDto extends AuthDto {
+
+    /**
+     * 分页大小
+     */
+    private Integer size;
+
+    /**
+     * 页码 从 1 开始
+     */
+    private Integer number;
 }
