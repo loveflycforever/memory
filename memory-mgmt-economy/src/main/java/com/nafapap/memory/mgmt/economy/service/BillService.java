@@ -18,6 +18,7 @@ import java.util.List;
  * @version v1.0
  */
 public interface BillService {
+
     FlowEntity createFlow();
 
     FormEntity createForm(RequestDto dto);
@@ -25,6 +26,8 @@ public interface BillService {
     void ensure(String takingNo, String operator, String userToken);
 
     List<FlowEntity> showFlows(PageDto dto);
+
+    List<FormEntity> showForm(PageDto dto);
 
     void join(String formNo, String flowNo);
 

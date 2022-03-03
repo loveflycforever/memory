@@ -11,6 +11,7 @@ package com.nafapap.memory.mgmt.economy.service;
  * @version v1.0
  */
 public interface SerialNoService {
+
     String generate();
 
 }
