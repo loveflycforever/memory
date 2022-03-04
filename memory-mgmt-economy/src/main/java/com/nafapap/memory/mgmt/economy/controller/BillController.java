@@ -5,6 +5,7 @@ import com.nafapap.memory.mgmt.economy.trans.PageDto;
 import com.nafapap.memory.mgmt.economy.trans.RequestDto;
 import com.nafapap.memory.source.entity.FlowEntity;
 import com.nafapap.memory.source.entity.FormEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @version v1.0
  */
 @RestController
+@RequiredArgsConstructor
 public class BillController {
 
     private final BillService billService;
-
-    @Autowired
-    public BillController(BillService billService) {
-        this.billService = billService;
-    }
 
     @GetMapping("/exhibit")
     public Object exhibit(PageDto dto) {
