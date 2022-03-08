@@ -44,6 +44,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -75,13 +76,11 @@
                 <groupId>com.nafapap.memory</groupId>
                 <artifactId>memory-source</artifactId>
                 <version>1.0-SNAPSHOT</version>
-                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>com.nafapap.memory</groupId>
                 <artifactId>memory-commons</artifactId>
                 <version>1.0-SNAPSHOT</version>
-                <scope>compile</scope>
             </dependency>
 
             <dependency>
