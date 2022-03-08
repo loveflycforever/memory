@@ -39,14 +39,10 @@ public class SwaggerConfig {
                 .build();
     }
 
-    /**
-     * 生成接口信息，包括标题、联系人，联系方式等
-     * @return ApiInfo
-     */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Memory接口文档")
-                .description("如有疑问，请联系开发工程师")
+                .description("万寿无疆")
                 .contact(new Contact("papafan", "https://www.papafan.com/", "papafan2020@outlook.com"))
                 .version("1.0")
                 .build();
