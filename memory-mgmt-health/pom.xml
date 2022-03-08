@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>memory-health</artifactId>
+    <artifactId>memory-mgmt-health</artifactId>
     <packaging>jar</packaging>
 
 
