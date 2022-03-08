@@ -5,6 +5,9 @@ import com.nafapap.memory.mgmt.economy.trans.PageDto;
 import com.nafapap.memory.mgmt.economy.trans.RequestDto;
 import com.nafapap.memory.source.entity.FlowEntity;
 import com.nafapap.memory.source.entity.FormEntity;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +25,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @author yuchaofan
  * @version v1.0
  */
+@Api(tags = "账单接口")
 @RestController
 @RequiredArgsConstructor
 public class BillController {
 
     private final BillService billService;
 
+    @ApiOperation("exhibit")
     @GetMapping("/exhibit")
-    public Object exhibit(PageDto dto) {
+    public Object exhibit(@ApiParam(name = "dto", value = "dto") PageDto dto) {
 
         return billService.showFlows(dto);
     }
