@@ -1,9 +1,9 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
 import com.nafapap.memory.commons.enums.Operator;
-import com.nafapap.memory.mgmt.economy.trans.PageDto;
-import com.nafapap.memory.mgmt.economy.trans.RequestDto;
-import com.nafapap.memory.mgmt.economy.trans.UserBa;
+import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.UserBa;
 import com.nafapap.memory.mgmt.economy.repository.BillRepository;
 import com.nafapap.memory.mgmt.economy.service.BillService;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
@@ -11,7 +11,6 @@ import com.nafapap.memory.mgmt.economy.service.UserService;
 import com.nafapap.memory.source.entity.FlowEntity;
 import com.nafapap.memory.source.entity.FormEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,9 +36,12 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public FlowEntity createFlow() {
-        FlowEntity flow = new FlowEntity()
+        FlowEntity entity = new FlowEntity()
                 .setSerialNo(serialNoService.generate());
-        return billRepository.insertFlow(flow);
+
+        Long id = billRepository.insertFlow(entity);
+        entity.setId(id);
+        return entity;
     }
 
     @Override
@@ -55,9 +57,11 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public FormEntity createForm(RequestDto dto) {
-        FormEntity flow = new FormEntity()
+        FormEntity entity = new FormEntity()
                 .setSerialNo(serialNoService.generate());
-        return billRepository.insertForm(flow);
+        Long id = billRepository.insertForm(entity);
+        entity.setId(id);
+        return entity;
     }
 
     @Override
@@ -71,7 +75,8 @@ public class BillServiceImpl implements BillService {
         FormEntity formEntity = billRepository.selectFormBySerialNo(formNo);
 
         FormEntity update = new FormEntity().setId(formEntity.getId())
-                .setFlowNo(flowEntity.getSerialNo());
+                .setFlowNo(flowEntity.getSerialNo())
+                .setVersion(formEntity.getVersion());
         billRepository.update(update);
     }
 }

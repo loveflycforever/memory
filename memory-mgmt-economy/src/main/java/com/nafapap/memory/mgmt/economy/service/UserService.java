@@ -1,6 +1,6 @@
 package com.nafapap.memory.mgmt.economy.service;
 
-import com.nafapap.memory.mgmt.economy.trans.UserBa;
+import com.nafapap.memory.mgmt.economy.transobj.UserBa;
 
 /**
  * <p>Project: memory </p>

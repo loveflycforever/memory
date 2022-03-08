@@ -1,7 +1,7 @@
 package com.nafapap.memory.mgmt.economy.repository;
 
 import cn.org.atool.fluent.mybatis.model.StdPagedList;
-import com.nafapap.memory.mgmt.economy.trans.PageDto;
+import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.source.entity.FlowEntity;
 import com.nafapap.memory.source.entity.FormEntity;
 import com.nafapap.memory.source.mapper.FlowMapper;
@@ -57,11 +57,11 @@ public class BillRepository {
         return list.getData();
     }
 
-    public FlowEntity insertFlow(FlowEntity flow) {
+    public Long insertFlow(FlowEntity flow) {
         return fmFlowMapper.save(flow);
     }
 
-    public FormEntity insertForm(FormEntity form) {
+    public Long insertForm(FormEntity form) {
         return fmFormMapper.save(form);
     }
 

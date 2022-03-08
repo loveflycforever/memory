@@ -1,7 +1,7 @@
 package com.nafapap.memory.mgmt.economy.service;
 
-import com.nafapap.memory.mgmt.economy.trans.PageDto;
-import com.nafapap.memory.mgmt.economy.trans.RequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.FormEntity;
 import com.nafapap.memory.source.entity.FlowEntity;
 

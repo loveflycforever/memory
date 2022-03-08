@@ -1,4 +1,4 @@
-package com.nafapap.memory.mgmt.economy.trans;
+package com.nafapap.memory.mgmt.economy.transobj;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

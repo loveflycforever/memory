@@ -1,7 +1,7 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
 import com.nafapap.memory.mgmt.economy.service.UserService;
-import com.nafapap.memory.mgmt.economy.trans.UserBa;
+import com.nafapap.memory.mgmt.economy.transobj.UserBa;
 import org.springframework.stereotype.Service;
 
 /**
