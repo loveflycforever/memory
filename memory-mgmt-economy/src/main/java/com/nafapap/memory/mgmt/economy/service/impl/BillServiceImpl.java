@@ -10,6 +10,7 @@ import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.UserService;
 import com.nafapap.memory.source.entity.FlowEntity;
 import com.nafapap.memory.source.entity.FormEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,19 +27,13 @@ import java.util.List;
  * @version v1.0
  */
 @Service
+@RequiredArgsConstructor
 public class BillServiceImpl implements BillService {
 
     private final UserService userService;
     private final SerialNoService serialNoService;
 
     private final BillRepository billRepository;
-
-    @Autowired
-    public BillServiceImpl(UserService userService, SerialNoService serialNoService, BillRepository billRepository) {
-        this.userService = userService;
-        this.serialNoService = serialNoService;
-        this.billRepository = billRepository;
-    }
 
     @Override
     public FlowEntity createFlow() {

@@ -8,16 +8,15 @@ import com.nafapap.memory.source.mapper.FlowMapper;
 import com.nafapap.memory.source.mapper.FormMapper;
 import com.nafapap.memory.source.wrapper.FlowQuery;
 import com.nafapap.memory.source.wrapper.FormQuery;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * <p>Project: memory </p>
- * <p>Name: FlowMapper </p>
+ * <p>Name: BillRepository </p>
  * <p>Description: ${描述} </p>
  * <p>Date: 2022/2/24 16:30 </p>
  * <p>Company: Cupshe Company Limited </p>
@@ -26,23 +25,18 @@ import java.util.Objects;
  * @version v1.0
  */
 @Component
+@RequiredArgsConstructor
 public class BillRepository {
 
-    private final FormMapper formMapper;
-    private final FlowMapper flowMapper;
-
-    @Autowired
-    public BillRepository(FormMapper formMapper, FlowMapper flowMapper) {
-        this.formMapper = formMapper;
-        this.flowMapper = flowMapper;
-    }
+    private final FormMapper fmFormMapper;
+    private final FlowMapper fmFlowMapper;
 
     public List<FlowEntity> selectFlows(PageDto dto) {
         int limit = NumberUtils.max(NumberUtils.INTEGER_ONE, dto.getSize());
 
         int from = (NumberUtils.max(NumberUtils.INTEGER_ONE, dto.getNumber()) - NumberUtils.INTEGER_ONE) * limit;
 
-        StdPagedList<FlowEntity> list = flowMapper.stdPagedEntity(new FlowQuery()
+        StdPagedList<FlowEntity> list = fmFlowMapper.stdPagedEntity(new FlowQuery()
                 .orderBy.id().asc().end()
                 .limit(from, limit)
         );
@@ -55,7 +49,7 @@ public class BillRepository {
 
         int from = (NumberUtils.max(NumberUtils.INTEGER_ONE, dto.getNumber()) - NumberUtils.INTEGER_ONE) * limit;
 
-        StdPagedList<FormEntity> list = formMapper.stdPagedEntity(new FlowQuery()
+        StdPagedList<FormEntity> list = fmFormMapper.stdPagedEntity(new FlowQuery()
                 .orderBy.id().asc().end()
                 .limit(from, limit)
         );
@@ -64,11 +58,11 @@ public class BillRepository {
     }
 
     public FlowEntity insertFlow(FlowEntity flow) {
-        return flowMapper.save(flow);
+        return fmFlowMapper.save(flow);
     }
 
     public FormEntity insertForm(FormEntity form) {
-        return formMapper.save(form);
+        return fmFormMapper.save(form);
     }
 
     public FlowEntity selectFlowBySerialNo(String serialNo) {
@@ -76,7 +70,7 @@ public class BillRepository {
                 .where()
                 .serialNo().eq(serialNo)
                 .end();
-        return flowMapper.findOne(query);
+        return fmFlowMapper.findOne(query);
     }
 
     public FormEntity selectFormBySerialNo(String serialNo) {
@@ -84,10 +78,10 @@ public class BillRepository {
                 .where()
                 .serialNo().eq(serialNo)
                 .end();
-        return formMapper.findOne(query);
+        return fmFormMapper.findOne(query);
     }
 
     public void update(FormEntity update) {
-        formMapper.updateById(update);
+        fmFormMapper.updateById(update);
     }
 }
