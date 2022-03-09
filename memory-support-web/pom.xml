@@ -10,14 +10,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>memory-support-web</artifactId>
+
+    <properties>
+        <spring-web.version>5.3.16</spring-web.version>
+        <validation-api.version>2.0.2</validation-api.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
+            <version>${validation-api.version}</version>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
+            <version>${spring-web.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
