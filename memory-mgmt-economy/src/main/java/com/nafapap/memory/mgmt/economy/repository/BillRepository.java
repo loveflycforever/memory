@@ -42,7 +42,7 @@ public class BillRepository {
     }
 
     public List<FormEntity> selectForms(PageDto dto) {
-        StdPagedList<FormEntity> list = fmFormMapper.stdPagedEntity(new FlowQuery()
+        StdPagedList<FormEntity> list = fmFormMapper.stdPagedEntity(new FormQuery()
                 .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
                 .limit(dto.getFrom(), dto.getLimit())
