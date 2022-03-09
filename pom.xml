@@ -34,6 +34,8 @@
         <skipTests>true</skipTests>
 
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
+        <com.nafapap.memory.version>1.0-SNAPSHOT</com.nafapap.memory.version>
+        <springfox-starter.version>3.0.0</springfox-starter.version>
     </properties>
 
     <dependencies>
@@ -49,20 +51,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.12.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-            <version>4.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>30.1.1-jre</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
@@ -71,43 +63,45 @@
         <dependencies>
             <dependency>
                 <groupId>com.nafapap.memory</groupId>
-                <artifactId>memory-source</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <artifactId>memory-commons</artifactId>
+                <version>${com.nafapap.memory.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.nafapap.memory</groupId>
-                <artifactId>memory-commons</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <artifactId>memory-source</artifactId>
+                <version>${com.nafapap.memory.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nafapap.memory</groupId>
+                <artifactId>memory-server</artifactId>
+                <version>${com.nafapap.memory.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nafapap.memory</groupId>
+                <artifactId>memory-mgmt-health</artifactId>
+                <version>${com.nafapap.memory.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nafapap.memory</groupId>
+                <artifactId>memory-mgmt-education</artifactId>
+                <version>${com.nafapap.memory.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nafapap.memory</groupId>
+                <artifactId>memory-mgmt-economy</artifactId>
+                <version>${com.nafapap.memory.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
-                <version>3.0.0</version>
+                <version>${springfox-starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>utf-8</encoding>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${org.projectlombok.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
