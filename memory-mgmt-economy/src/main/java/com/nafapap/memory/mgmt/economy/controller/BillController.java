@@ -34,8 +34,14 @@ public class BillController {
 
     @GetMapping("/exhibit")
     public Object exhibit(PageDto dto) {
-        List<FlowEntity> flowEntities = billService.showFlows(dto);
-        return ResponseView.build(flowEntities);
+        List<FlowEntity> entities = billService.showFlows(dto);
+        return ResponseView.build(entities);
+    }
+
+    @GetMapping("/exhibit/expand")
+    public Object exhibitExpand(PageDto dto) {
+        List<FormEntity> entities = billService.showForm(dto);
+        return ResponseView.build(entities);
     }
 
     @PostMapping("/create")

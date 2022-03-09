@@ -37,6 +37,7 @@ public class BillRepository {
         int from = (NumberUtils.max(NumberUtils.INTEGER_ONE, dto.getNumber()) - NumberUtils.INTEGER_ONE) * limit;
 
         StdPagedList<FlowEntity> list = fmFlowMapper.stdPagedEntity(new FlowQuery()
+                .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
                 .limit(from, limit)
         );
@@ -50,6 +51,7 @@ public class BillRepository {
         int from = (NumberUtils.max(NumberUtils.INTEGER_ONE, dto.getNumber()) - NumberUtils.INTEGER_ONE) * limit;
 
         StdPagedList<FormEntity> list = fmFormMapper.stdPagedEntity(new FlowQuery()
+                .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
                 .limit(from, limit)
         );
