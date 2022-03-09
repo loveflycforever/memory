@@ -32,6 +32,7 @@ public class RequestDto extends AuthDto {
     @NotBlank
     private String operator;
 
+    @NotBlank
     @Within(message = "类型输入错误",value = FlowFormat.class )
     private String format;
 

@@ -87,8 +87,8 @@ public class ThingEntity extends RichEntity {
   /**
    * 类型
    */
-  @TableField("genre")
-  private Integer genre;
+  @TableField("format")
+  private String format;
 
   /**
    * 名称
@@ -130,7 +130,7 @@ public class ThingEntity extends RichEntity {
    * 状态
    */
   @TableField("status")
-  private Integer status;
+  private String status;
 
   /**
    * 概要

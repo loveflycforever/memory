@@ -8,6 +8,7 @@ import com.nafapap.memory.source.entity.FormEntity;
 import com.nafapap.memory.support.web.ResponseView;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,8 +46,8 @@ public class BillController {
     }
 
     @PostMapping("/create")
-    public ResponseView create(@RequestBody RequestDto dto) {
-        FlowEntity flow = billService.createFlow();
+    public ResponseView create(@RequestBody @Validated RequestDto dto) {
+        FlowEntity flow = billService.createFlow(dto);
         String flowNo = flow.getSerialNo();
 
         FormEntity form = billService.createForm(dto);
@@ -58,7 +59,7 @@ public class BillController {
     }
 
     @PostMapping("/ensure")
-    public ResponseView ensure(@RequestBody RequestDto dto) {
+    public ResponseView ensure(@RequestBody @Validated RequestDto dto) {
 
         String takingNo = dto.getTakingNo();
         String operator = dto.getOperator();

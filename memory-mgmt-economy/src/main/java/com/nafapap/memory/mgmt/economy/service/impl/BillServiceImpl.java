@@ -35,8 +35,9 @@ public class BillServiceImpl implements BillService {
     private final BillRepository billRepository;
 
     @Override
-    public FlowEntity createFlow() {
+    public FlowEntity createFlow(RequestDto dto) {
         FlowEntity entity = new FlowEntity()
+                .setFormat(dto.getFormat())
                 .setSerialNo(serialNoService.generate());
 
         Long id = billRepository.insertFlow(entity);

@@ -19,7 +19,7 @@ import java.util.List;
  */
 public interface BillService {
 
-    FlowEntity createFlow();
+    FlowEntity createFlow(RequestDto dto);
 
     FormEntity createForm(RequestDto dto);
 

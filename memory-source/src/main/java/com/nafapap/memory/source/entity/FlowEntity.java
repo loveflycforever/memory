@@ -81,8 +81,8 @@ public class FlowEntity extends RichEntity {
   /**
    * 类型
    */
-  @TableField("genre")
-  private Integer genre;
+  @TableField("format")
+  private String format;
 
   /**
    * 操作人
@@ -112,7 +112,7 @@ public class FlowEntity extends RichEntity {
    * 状态
    */
   @TableField("status")
-  private Integer status;
+  private String status;
 
   /**
    * 版本
