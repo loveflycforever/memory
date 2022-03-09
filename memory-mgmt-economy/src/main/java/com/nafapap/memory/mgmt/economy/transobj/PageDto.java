@@ -17,6 +17,9 @@ import lombok.EqualsAndHashCode;
 @Data
 public class PageDto extends AuthDto {
 
+    private static final Integer DEFAULT_SIZE = 25;
+    private static final Integer DEFAULT_NUMBER = 1;
+
     /**
      * 分页大小
      */
@@ -26,4 +29,12 @@ public class PageDto extends AuthDto {
      * 页码 从 1 开始
      */
     private Integer number;
+
+    public Integer getNumber() {
+        return this.number != null && this.number >= DEFAULT_NUMBER ? this.number : DEFAULT_NUMBER;
+    }
+
+    public Integer getSize() {
+        return this.size != null && this.size >= DEFAULT_NUMBER ? this.size : DEFAULT_SIZE;
+    }
 }

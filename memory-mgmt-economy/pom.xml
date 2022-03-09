@@ -37,6 +37,10 @@
             <groupId>com.nafapap.memory</groupId>
             <artifactId>memory-commons</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.nafapap.memory</groupId>
+            <artifactId>memory-support-web</artifactId>
+        </dependency>
 
     </dependencies>
 </project>

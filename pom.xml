@@ -92,6 +92,11 @@
                 <artifactId>memory-mgmt-economy</artifactId>
                 <version>${com.nafapap.memory.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.nafapap.memory</groupId>
+                <artifactId>memory-support-web</artifactId>
+                <version>${com.nafapap.memory.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>io.springfox</groupId>
