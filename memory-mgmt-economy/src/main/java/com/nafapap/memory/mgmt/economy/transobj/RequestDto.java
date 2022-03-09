@@ -1,5 +1,6 @@
 package com.nafapap.memory.mgmt.economy.transobj;
 
+import com.nafapap.memory.support.web.constraints.Within;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -30,6 +31,9 @@ public class RequestDto extends AuthDto {
      */
     @NotBlank
     private String operator;
+
+    @Within(message = "类型输入错误",value = FlowFormat.class )
+    private String format;
 
 }
 

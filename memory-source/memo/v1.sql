@@ -4,8 +4,8 @@ CREATE TABLE `t_flow` (
     `serial_no` varchar(255) NOT NULL DEFAULT '' COMMENT '序列号',
     `creator_id` varchar(255) NOT NULL DEFAULT '' COMMENT '创建人',
     `creator_name` varchar(255) NOT NULL DEFAULT '' COMMENT '创建人名称',
-    `genre` int(11) NOT NULL DEFAULT '0' COMMENT '类型',
-    `status` int(11) NOT NULL DEFAULT '0' COMMENT '状态',
+    `format` varchar(255) NOT NULL DEFAULT '' COMMENT '类型',
+    `status` varchar(255) NOT NULL DEFAULT '' COMMENT '状态',
 
     `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
     `delete_flag` tinyint(2) NOT NULL DEFAULT '0' COMMENT '作废标志 0 未作废 1作废',
@@ -28,8 +28,8 @@ CREATE TABLE `t_thing` (
     `expiration_date` varchar(255) NOT NULL DEFAULT '' COMMENT '有效日期',
     `creator_id` varchar(255) NOT NULL DEFAULT '' COMMENT '创建人',
     `creator_name` varchar(255) NOT NULL DEFAULT '' COMMENT '创建人名称',
-    `genre` int(11) NOT NULL DEFAULT '0' COMMENT '类型',
-    `status` int(11) NOT NULL DEFAULT '0' COMMENT '状态',
+    `format` varchar(255) NOT NULL DEFAULT '' COMMENT '类型',
+    `status` varchar(255) NOT NULL DEFAULT '' COMMENT '状态',
 
     `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
     `delete_flag` tinyint(2) NOT NULL DEFAULT '0' COMMENT '作废标志 0 未作废 1作废',
