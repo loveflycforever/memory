@@ -32,28 +32,20 @@ public class BillRepository {
     private final FlowMapper fmFlowMapper;
 
     public List<FlowEntity> selectFlows(PageDto dto) {
-        int limit = NumberUtils.max(NumberUtils.INTEGER_ONE, dto.getSize());
-
-        int from = (NumberUtils.max(NumberUtils.INTEGER_ONE, dto.getNumber()) - NumberUtils.INTEGER_ONE) * limit;
-
         StdPagedList<FlowEntity> list = fmFlowMapper.stdPagedEntity(new FlowQuery()
                 .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
-                .limit(from, limit)
+                .limit(dto.getFrom(), dto.getLimit())
         );
 
         return list.getData();
     }
 
     public List<FormEntity> selectForms(PageDto dto) {
-        int limit = NumberUtils.max(NumberUtils.INTEGER_ONE, dto.getSize());
-
-        int from = (NumberUtils.max(NumberUtils.INTEGER_ONE, dto.getNumber()) - NumberUtils.INTEGER_ONE) * limit;
-
         StdPagedList<FormEntity> list = fmFormMapper.stdPagedEntity(new FlowQuery()
                 .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
-                .limit(from, limit)
+                .limit(dto.getFrom(), dto.getLimit())
         );
 
         return list.getData();

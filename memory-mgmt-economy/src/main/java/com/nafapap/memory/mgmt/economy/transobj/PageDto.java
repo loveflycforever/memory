@@ -2,6 +2,7 @@ package com.nafapap.memory.mgmt.economy.transobj;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.commons.lang3.math.NumberUtils;
 
 /**
  * <p>Project: memory </p>
@@ -36,5 +37,13 @@ public class PageDto extends AuthDto {
 
     public Integer getSize() {
         return this.size != null && this.size >= DEFAULT_NUMBER ? this.size : DEFAULT_SIZE;
+    }
+
+    public Integer getLimit() {
+        return NumberUtils.max(DEFAULT_NUMBER, this.getSize());
+    }
+
+    public Integer getFrom() {
+        return (NumberUtils.max(DEFAULT_NUMBER, this.getNumber()) - DEFAULT_NUMBER) * getLimit();
     }
 }
