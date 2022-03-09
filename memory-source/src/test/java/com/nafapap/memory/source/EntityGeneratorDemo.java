@@ -14,7 +14,7 @@ public class EntityGeneratorDemo {
 
 
     @Test
-    public void generate() throws Exception {
+    public void generate() {
         // 引用配置类，build方法允许有多个配置类
         FileGenerator.build(Empty.class);
     }
