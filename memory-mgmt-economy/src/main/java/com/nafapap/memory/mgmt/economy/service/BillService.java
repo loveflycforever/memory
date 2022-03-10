@@ -3,7 +3,6 @@ package com.nafapap.memory.mgmt.economy.service;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.FormEntity;
-import com.nafapap.memory.source.entity.FlowEntity;
 
 import java.util.List;
 
@@ -19,13 +18,9 @@ import java.util.List;
  */
 public interface BillService {
 
-    FlowEntity createFlow(RequestDto dto);
-
     FormEntity createForm(RequestDto dto);
 
     void ensure(String takingNo, String operator, String userToken);
-
-    List<FlowEntity> showFlows(PageDto dto);
 
     List<FormEntity> showForm(PageDto dto);
 

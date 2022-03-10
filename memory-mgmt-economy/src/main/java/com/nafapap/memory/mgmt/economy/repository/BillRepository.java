@@ -2,11 +2,8 @@ package com.nafapap.memory.mgmt.economy.repository;
 
 import cn.org.atool.fluent.mybatis.model.StdPagedList;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.source.entity.FlowEntity;
 import com.nafapap.memory.source.entity.FormEntity;
-import com.nafapap.memory.source.mapper.FlowMapper;
 import com.nafapap.memory.source.mapper.FormMapper;
-import com.nafapap.memory.source.wrapper.FlowQuery;
 import com.nafapap.memory.source.wrapper.FormQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -28,10 +25,9 @@ import java.util.List;
 public class BillRepository {
 
     private final FormMapper fmFormMapper;
-    private final FlowMapper fmFlowMapper;
 
-    public List<FlowEntity> selectFlows(PageDto dto) {
-        StdPagedList<FlowEntity> list = fmFlowMapper.stdPagedEntity(new FlowQuery()
+    public List<FormEntity> selectFlows(PageDto dto) {
+        StdPagedList<FormEntity> list = fmFormMapper.stdPagedEntity(new FormQuery()
                 .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
                 .limit(dto.getFrom(), dto.getLimit())
@@ -50,20 +46,8 @@ public class BillRepository {
         return list.getData();
     }
 
-    public Long insertFlow(FlowEntity flow) {
-        return fmFlowMapper.save(flow);
-    }
-
     public Long insertForm(FormEntity form) {
         return fmFormMapper.save(form);
-    }
-
-    public FlowEntity selectFlowBySerialNo(String serialNo) {
-        FlowQuery query = FlowQuery.query()
-                .where()
-                .serialNo().eq(serialNo)
-                .end();
-        return fmFlowMapper.findOne(query);
     }
 
     public FormEntity selectFormBySerialNo(String serialNo) {

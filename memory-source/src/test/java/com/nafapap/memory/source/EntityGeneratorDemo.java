@@ -36,7 +36,6 @@ public class EntityGeneratorDemo {
                     gmtModified = "operate_time",
                     version = "version",
                     value = {
-                            "t_flow",
                             "t_thing",
                             "t_form"
                     })}

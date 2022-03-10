@@ -15,5 +15,6 @@ public enum FlowFormat {
     /**
      * 枚举
      */
-    SAVE, SPEND
+    SAVE, COST,
+    REQUEST, EXAMINE, VOUCHER
 }

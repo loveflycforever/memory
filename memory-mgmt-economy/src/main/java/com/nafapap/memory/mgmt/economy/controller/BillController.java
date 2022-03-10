@@ -1,13 +1,14 @@
 package com.nafapap.memory.mgmt.economy.controller;
 
 import com.nafapap.memory.mgmt.economy.service.BillService;
+import com.nafapap.memory.mgmt.economy.transobj.FlowFormat;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
-import com.nafapap.memory.source.entity.FlowEntity;
 import com.nafapap.memory.source.entity.FormEntity;
 import com.nafapap.memory.support.web.ResponseView;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,7 @@ public class BillController {
 
     @GetMapping("/exhibit")
     public Object exhibit(PageDto dto) {
-        List<FlowEntity> entities = billService.showFlows(dto);
+        List<FormEntity> entities = billService.showForm(dto);
         return ResponseView.build(entities);
     }
 
@@ -47,8 +48,18 @@ public class BillController {
 
     @PostMapping("/create")
     public ResponseView create(@RequestBody @Validated RequestDto dto) {
-        FlowEntity flow = billService.createFlow(dto);
-        String flowNo = flow.getSerialNo();
+        String flowNo = null;
+
+        if (StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.SAVE.name())
+                || StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.COST.name())) {
+            FormEntity flow = billService.createForm(dto);
+            flowNo = flow.getSerialNo();
+        }
+
+        if(StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.SAVE.name())
+                || StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.COST.name())) {
+            dto.setFormat(FlowFormat.REQUEST.name());
+        }
 
         FormEntity form = billService.createForm(dto);
         String formNo = form.getSerialNo();
@@ -68,8 +79,6 @@ public class BillController {
 
         return ResponseView.build();
     }
-
-
 
 
 }

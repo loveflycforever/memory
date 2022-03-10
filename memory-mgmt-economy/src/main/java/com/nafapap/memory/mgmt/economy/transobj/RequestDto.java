@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * <p>Project: memory </p>
@@ -35,6 +36,9 @@ public class RequestDto extends AuthDto {
     @NotBlank
     @Within(message = "类型输入错误",value = FlowFormat.class )
     private String format;
+
+    @NotNull
+    private Boolean auto;
 
 }
 

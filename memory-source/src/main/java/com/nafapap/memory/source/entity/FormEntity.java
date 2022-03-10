@@ -67,10 +67,34 @@ public class FormEntity extends RichEntity {
   private Boolean deleteFlag;
 
   /**
+   * 创建人
+   */
+  @TableField("creator_id")
+  private String creatorId;
+
+  /**
+   * 创建人名称
+   */
+  @TableField("creator_name")
+  private String creatorName;
+
+  /**
    * 流程号
    */
   @TableField("flow_no")
   private String flowNo;
+
+  /**
+   * 类型
+   */
+  @TableField("format")
+  private String format;
+
+  /**
+   * 事由
+   */
+  @TableField("note")
+  private String note;
 
   /**
    * 操作人
@@ -95,6 +119,12 @@ public class FormEntity extends RichEntity {
    */
   @TableField("serial_no")
   private String serialNo;
+
+  /**
+   * 状态
+   */
+  @TableField("status")
+  private String status;
 
   /**
    * 版本
