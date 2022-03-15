@@ -9,6 +9,7 @@ import com.nafapap.memory.support.web.ResponseView;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,10 +62,18 @@ public class BillController {
             dto.setFormat(FlowFormat.REQUEST.name());
         }
 
-        FormEntity form = billService.createForm(dto);
-        String formNo = form.getSerialNo();
+        if (NumberUtils.INTEGER_ONE == 1) {
+            FormEntity form = billService.createForm(dto);
+            String formNo = form.getSerialNo();
+            billService.join(formNo, flowNo);
+        }
 
-        billService.join(formNo, flowNo);
+        if(dto.getAuto()) {
+            dto.setFormat(FlowFormat.EXAMINE.name());
+            FormEntity form = billService.createForm(dto);
+            String formNo = form.getSerialNo();
+            billService.join(formNo, flowNo);
+        }
 
         return ResponseView.build();
     }

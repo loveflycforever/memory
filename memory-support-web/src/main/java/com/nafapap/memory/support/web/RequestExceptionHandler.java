@@ -1,7 +1,6 @@
 package com.nafapap.memory.support.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
@@ -14,9 +13,8 @@ import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @RestControllerAdvice
+@Slf4j
 public class RequestExceptionHandler {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * post请求参数校验时抛出的异常
@@ -50,7 +48,7 @@ public class RequestExceptionHandler {
     public ResponseView constraintViolationExceptionHandler(ConstraintViolationException e) {
         //获取异常中第一个错误信息
         String errorMsg = e.getConstraintViolations().iterator().next().getMessage();
-        logger.error(ResponseCode.RP_000001.getDesc() + "," + errorMsg);
+        log.error(ResponseCode.RP_000001.getDesc() + "," + errorMsg);
         return ResponseView.build(new Exception(errorMsg));
     }
 
@@ -61,7 +59,7 @@ public class RequestExceptionHandler {
     public ResponseView businessExceptionHandler(ServiceException e) {
         //获取异常中第一个错误信息
         String errorMsg = e.getMessage();
-        logger.error(ResponseCode.RP_000001.getDesc() + "," + errorMsg);
+        log.error(ResponseCode.RP_000001.getDesc() + "," + errorMsg);
         return ResponseView.build(new Exception(errorMsg));
     }
 
@@ -78,7 +76,7 @@ public class RequestExceptionHandler {
                 sb.append(objectError.getDefaultMessage()).append(";");
             }
         }
-        logger.error(ResponseCode.RP_000002.getDesc() + "," + sb.toString());
+        log.error(ResponseCode.RP_000002.getDesc() + "," + sb.toString());
         return ResponseView.build(new Exception(sb.toString()));
     }
 
@@ -92,7 +90,7 @@ public class RequestExceptionHandler {
     @ResponseBody
     @ExceptionHandler(NullPointerException.class)
     public ResponseView globalException(NullPointerException ex) {
-        logger.error("系统捕获异常:", ex);
+        log.error("系统捕获异常:", ex);
         return ResponseView.build(new Exception(ResponseCode.RP_000001.getDesc()));
     }
 

@@ -17,10 +17,12 @@
         <java.version>1.8</java.version>
         <encoding>UTF-8</encoding>
 
-        <spring-web.version>5.3.16</spring-web.version>
+        <spring.version>5.3.16</spring.version>
         <validation-api.version>2.0.2</validation-api.version>
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
+        <org.slf4j.version>1.7.36</org.slf4j.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>jakarta.validation</groupId>
@@ -30,9 +32,23 @@
         </dependency>
 
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>${spring-web.version}</version>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
             <scope>provided</scope>
         </dependency>
 
