@@ -2,9 +2,9 @@ package com.nafapap.memory.mgmt.economy.repository;
 
 import cn.org.atool.fluent.mybatis.model.StdPagedList;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.source.entity.FormEntity;
-import com.nafapap.memory.source.mapper.FormMapper;
-import com.nafapap.memory.source.wrapper.FormQuery;
+import com.nafapap.memory.source.entity.FactumEntity;
+import com.nafapap.memory.source.mapper.FactumMapper;
+import com.nafapap.memory.source.wrapper.FactumQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -24,10 +24,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BillRepository {
 
-    private final FormMapper fmFormMapper;
+    private final FactumMapper fmFactumMapper;
 
-    public List<FormEntity> selectFlows(PageDto dto) {
-        StdPagedList<FormEntity> list = fmFormMapper.stdPagedEntity(new FormQuery()
+    public List<FactumEntity> selectFlows(PageDto dto) {
+        StdPagedList<FactumEntity> list = fmFactumMapper.stdPagedEntity(new FactumQuery()
                 .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
                 .limit(dto.getFrom(), dto.getLimit())
@@ -36,8 +36,8 @@ public class BillRepository {
         return list.getData();
     }
 
-    public List<FormEntity> selectForms(PageDto dto) {
-        StdPagedList<FormEntity> list = fmFormMapper.stdPagedEntity(new FormQuery()
+    public List<FactumEntity> selectForms(PageDto dto) {
+        StdPagedList<FactumEntity> list = fmFactumMapper.stdPagedEntity(new FactumQuery()
                 .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
                 .limit(dto.getFrom(), dto.getLimit())
@@ -46,19 +46,19 @@ public class BillRepository {
         return list.getData();
     }
 
-    public Long insertForm(FormEntity form) {
-        return fmFormMapper.save(form);
+    public Long insertForm(FactumEntity form) {
+        return fmFactumMapper.save(form);
     }
 
-    public FormEntity selectFormBySerialNo(String serialNo) {
-        FormQuery query = FormQuery.query()
+    public FactumEntity selectFormBySerialNo(String serialNo) {
+        FactumQuery query = FactumQuery.query()
                 .where()
                 .serialNo().eq(serialNo)
                 .end();
-        return fmFormMapper.findOne(query);
+        return fmFactumMapper.findOne(query);
     }
 
-    public void update(FormEntity update) {
-        fmFormMapper.updateById(update);
+    public void update(FactumEntity update) {
+        fmFactumMapper.updateById(update);
     }
 }

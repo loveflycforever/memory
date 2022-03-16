@@ -4,7 +4,7 @@ import com.nafapap.memory.mgmt.economy.service.BillService;
 import com.nafapap.memory.mgmt.economy.transobj.FlowFormat;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
-import com.nafapap.memory.source.entity.FormEntity;
+import com.nafapap.memory.source.entity.FactumEntity;
 import com.nafapap.memory.support.web.ResponseView;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -37,13 +37,13 @@ public class BillController {
 
     @GetMapping("/exhibit")
     public Object exhibit(PageDto dto) {
-        List<FormEntity> entities = billService.showForm(dto);
+        List<FactumEntity> entities = billService.showForm(dto);
         return ResponseView.build(entities);
     }
 
     @GetMapping("/exhibit/expand")
     public Object exhibitExpand(PageDto dto) {
-        List<FormEntity> entities = billService.showForm(dto);
+        List<FactumEntity> entities = billService.showForm(dto);
         return ResponseView.build(entities);
     }
 
@@ -53,7 +53,7 @@ public class BillController {
 
         if (StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.SAVE.name())
                 || StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.COST.name())) {
-            FormEntity flow = billService.createForm(dto);
+            FactumEntity flow = billService.createForm(dto);
             flowNo = flow.getSerialNo();
         }
 
@@ -63,14 +63,14 @@ public class BillController {
         }
 
         if (NumberUtils.INTEGER_ONE == 1) {
-            FormEntity form = billService.createForm(dto);
+            FactumEntity form = billService.createForm(dto);
             String formNo = form.getSerialNo();
             billService.join(formNo, flowNo);
         }
 
         if(dto.getAuto()) {
             dto.setFormat(FlowFormat.EXAMINE.name());
-            FormEntity form = billService.createForm(dto);
+            FactumEntity form = billService.createForm(dto);
             String formNo = form.getSerialNo();
             billService.join(formNo, flowNo);
         }

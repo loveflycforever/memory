@@ -17,7 +17,7 @@ import springfox.documentation.spring.web.plugins.Docket;
  * <p>Name: SwaggerConfig </p>
  * <p>Description:
  * http://localhost:8085/memory/swagger-ui/index.html
- * http://localhost:8085/memory/docs.html
+ * http://localhost:8085/memory/doc.html
  * </p>
  * <p>Date: 2022/3/1 16:33 </p>
  * <p>Company: Cupshe Company Limited </p>

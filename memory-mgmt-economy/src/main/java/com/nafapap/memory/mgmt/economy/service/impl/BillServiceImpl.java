@@ -8,7 +8,7 @@ import com.nafapap.memory.mgmt.economy.service.UserService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.UserBa;
-import com.nafapap.memory.source.entity.FormEntity;
+import com.nafapap.memory.source.entity.FactumEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,8 +40,8 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public FormEntity createForm(RequestDto dto) {
-        FormEntity entity = new FormEntity()
+    public FactumEntity createForm(RequestDto dto) {
+        FactumEntity entity = new FactumEntity()
                 .setFormat(dto.getFormat())
                 .setSerialNo(serialNoService.generate());
         Long id = billRepository.insertForm(entity);
@@ -50,18 +50,18 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public List<FormEntity> showForm(PageDto dto) {
+    public List<FactumEntity> showForm(PageDto dto) {
         return billRepository.selectForms(dto);
     }
 
     @Override
     public void join(String formNo, String flowNo) {
-        FormEntity flowEntity = billRepository.selectFormBySerialNo(flowNo);
-        FormEntity formEntity = billRepository.selectFormBySerialNo(formNo);
+        FactumEntity flowEntity = billRepository.selectFormBySerialNo(flowNo);
+        FactumEntity FactumEntity = billRepository.selectFormBySerialNo(formNo);
 
-        FormEntity update = new FormEntity().setId(formEntity.getId())
+        FactumEntity update = new FactumEntity().setId(FactumEntity.getId())
                 .setFlowNo(flowEntity.getSerialNo())
-                .setVersion(formEntity.getVersion());
+                .setVersion(FactumEntity.getVersion());
         billRepository.update(update);
     }
 }
