@@ -30,7 +30,7 @@ public class BillRepository {
         StdPagedList<FactumEntity> list = fmFactumMapper.stdPagedEntity(new FactumQuery()
                 .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
-                .limit(dto.getFrom(), dto.getLimit())
+                .limit(dto.gainFrom(), dto.gainLimit())
         );
 
         return list.getData();
@@ -40,7 +40,7 @@ public class BillRepository {
         StdPagedList<FactumEntity> list = fmFactumMapper.stdPagedEntity(new FactumQuery()
                 .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
-                .limit(dto.getFrom(), dto.getLimit())
+                .limit(dto.gainFrom(), dto.gainLimit())
         );
 
         return list.getData();

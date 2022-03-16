@@ -39,11 +39,11 @@ public class PageDto extends AuthDto {
         return this.size != null && this.size >= DEFAULT_NUMBER ? this.size : DEFAULT_SIZE;
     }
 
-    public Integer getLimit() {
+    public Integer gainLimit() {
         return NumberUtils.max(DEFAULT_NUMBER, this.getSize());
     }
 
-    public Integer getFrom() {
-        return (NumberUtils.max(DEFAULT_NUMBER, this.getNumber()) - DEFAULT_NUMBER) * getLimit();
+    public Integer gainFrom() {
+        return (NumberUtils.max(DEFAULT_NUMBER, this.getNumber()) - DEFAULT_NUMBER) * gainLimit();
     }
 }
