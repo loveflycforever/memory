@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * FormEntity: 数据映射实体定义
+ * FactumEntity: 数据映射实体定义
  *
  * @author Powered By Fluent Mybatis
  */
@@ -25,10 +25,10 @@ import lombok.experimental.Accessors;
     callSuper = false
 )
 @FluentMybatis(
-    table = "t_form",
+    table = "t_factum",
     schema = "s_memory"
 )
-public class FormEntity extends RichEntity {
+public class FactumEntity extends RichEntity {
   private static final long serialVersionUID = 1L;
 
   /**
@@ -139,6 +139,6 @@ public class FormEntity extends RichEntity {
 
   @Override
   public final Class entityClass() {
-    return FormEntity.class;
+    return FactumEntity.class;
   }
 }

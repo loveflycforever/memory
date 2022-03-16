@@ -23,7 +23,7 @@ CREATE TABLE `t_thing` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='物品表';
 
 
-CREATE TABLE `t_form` (
+CREATE TABLE `t_factum` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
 
     `serial_no` varchar(255) NOT NULL DEFAULT '' COMMENT '序列号',
