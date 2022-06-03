@@ -1,10 +1,14 @@
 package com.nafapap.memory.mgmt.economy.controller;
 
 import com.nafapap.memory.mgmt.economy.service.BillService;
+import com.nafapap.memory.mgmt.economy.service.FormatService;
+import com.nafapap.memory.mgmt.economy.service.GoodsService;
 import com.nafapap.memory.mgmt.economy.transobj.FlowFormat;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.FactumEntity;
+import com.nafapap.memory.source.entity.FormatEntity;
+import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.support.web.ResponseView;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -31,44 +35,19 @@ import java.util.List;
 @RequestMapping("/goods")
 public class GoodsController {
 
-    private final BillService billService;
+
+    private final GoodsService goodsService;
 
     @GetMapping("/exhibit")
     public Object exhibit(PageDto dto) {
-        List<FactumEntity> entities = billService.showForm(dto);
+        List<GoodsEntity> entities = goodsService.exhibit(dto);
         return ResponseView.build(entities);
     }
 
     @PostMapping("/create")
     public ResponseView create(@RequestBody @Validated RequestDto dto) {
-        String flowNo = null;
-
-        if (StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.SAVE.name())
-                || StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.COST.name())) {
-            FactumEntity flow = billService.createForm(dto);
-            flowNo = flow.getSerialNo();
-        }
-
-        if(StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.SAVE.name())
-                || StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.COST.name())) {
-            dto.setFormat(FlowFormat.REQUEST.name());
-        }
-
-        if (NumberUtils.INTEGER_ONE == 1) {
-            FactumEntity form = billService.createForm(dto);
-            String formNo = form.getSerialNo();
-            billService.join(formNo, flowNo);
-        }
-
-        if(Boolean.TRUE.equals(dto.getAuto())) {
-            dto.setFormat(FlowFormat.EXAMINE.name());
-            FactumEntity form = billService.createForm(dto);
-            String formNo = form.getSerialNo();
-            billService.join(formNo, flowNo);
-        }
-
-        return ResponseView.build();
+        GoodsEntity entity = goodsService.create(dto);
+        return ResponseView.build(entity);
     }
-
 
 }
