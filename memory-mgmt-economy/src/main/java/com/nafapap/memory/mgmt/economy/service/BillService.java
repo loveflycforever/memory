@@ -1,5 +1,6 @@
 package com.nafapap.memory.mgmt.economy.service;
 
+import com.nafapap.memory.mgmt.economy.transobj.FactumRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.FactumEntity;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public interface BillService {
 
-    FactumEntity createForm(RequestDto dto);
+    FactumEntity createForm(FactumRequestDto dto);
 
     void ensure(String takingNo, String operator, String userToken);
 

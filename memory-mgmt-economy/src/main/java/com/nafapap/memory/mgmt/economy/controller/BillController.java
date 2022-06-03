@@ -1,6 +1,7 @@
 package com.nafapap.memory.mgmt.economy.controller;
 
 import com.nafapap.memory.mgmt.economy.service.BillService;
+import com.nafapap.memory.mgmt.economy.transobj.FactumRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.FlowFormat;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
@@ -42,7 +43,7 @@ public class BillController {
     }
 
     @PostMapping("/create")
-    public ResponseView create(@RequestBody @Validated RequestDto dto) {
+    public ResponseView create(@RequestBody @Validated FactumRequestDto dto) {
         String flowNo = null;
 
         if (StringUtils.equalsIgnoreCase(dto.getFormat(), FlowFormat.SAVE.name())

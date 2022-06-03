@@ -1,4 +1,4 @@
-CREATE TABLE `t_format`
+CREATE TABLE `t_subject`
 (
     `id`            bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
     `serial_no`     varchar(100)        NOT NULL DEFAULT '' COMMENT '序列号',
@@ -85,8 +85,8 @@ CREATE TABLE `t_goods`
 
 CREATE TABLE `t_procure`
 (
-    `id`              bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
-    `serial_no`       varchar(100)        NOT NULL DEFAULT '' COMMENT '序列号',
+    `id`             bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
+    `serial_no`      varchar(100)        NOT NULL DEFAULT '' COMMENT '序列号',
 
     `goods_id`       bigint(20)          NOT NULL DEFAULT '0' COMMENT '商品编号',
     `quantity`       int(11)             NOT NULL DEFAULT '0' COMMENT '商品数量',
@@ -96,8 +96,6 @@ CREATE TABLE `t_procure`
     `rmb`            decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '人民币',
     `amount`         int(11)             NOT NULL DEFAULT '0' COMMENT '实际可用总量',
     `unit`           varchar(10)         NOT NULL DEFAULT '' COMMENT '单位',
-    `payment`        varchar(50)         NOT NULL DEFAULT '' COMMENT '支付方式',
-    `transfer`       varchar(50)         NOT NULL DEFAULT '' COMMENT '付款方式',
 
     `summary`        varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
     `purchase_place` varchar(255)        NOT NULL DEFAULT '' COMMENT '购买地点',
@@ -123,20 +121,48 @@ CREATE TABLE `t_procure`
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4 COMMENT ='采购表';
 
+CREATE TABLE `t_ticket`
+(
+    `id`            bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
+    `serial_no`     varchar(100)        NOT NULL DEFAULT '' COMMENT '序列号',
+
+    `name`          varchar(100)        NOT NULL DEFAULT '' COMMENT '名称',
+    `summary`       varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
+    `expense`       decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '实际支出',
+    `payment`       varchar(50)         NOT NULL DEFAULT '' COMMENT '支付方式',
+    `transfer`      varchar(50)         NOT NULL DEFAULT '' COMMENT '付款方式',
+
+    `creator_id`    bigint(20)          NOT NULL DEFAULT '0' COMMENT '创建人',
+    `creator_name`  varchar(64)         NOT NULL DEFAULT '' COMMENT '创建人名称',
+    `create_time`   timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `status`        varchar(50)         NOT NULL DEFAULT '' COMMENT '状态',
+
+    `remark`        varchar(255)        NOT NULL DEFAULT '' COMMENT '备注',
+    `delete_flag`   tinyint(2)          NOT NULL DEFAULT '0' COMMENT '作废标志 0 未作废 1作废',
+    `operator_id`   bigint(20)          NOT NULL DEFAULT '0' COMMENT '操作人',
+    `operator_name` varchar(64)         NOT NULL DEFAULT '' COMMENT '操作人名称',
+    `operate_time`  timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '操作时间',
+    `version`       int(11)             NOT NULL DEFAULT '0' COMMENT '版本',
+    PRIMARY KEY (`id`) USING BTREE,
+    KEY `operate_sort` (`operate_time`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8mb4 COMMENT ='票据表';
+
 
 CREATE TABLE `t_factum`
 (
-    `id`              bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
-    `serial_no`       varchar(100)        NOT NULL DEFAULT '' COMMENT '序列号',
+    `id`            bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
+    `serial_no`     varchar(100)        NOT NULL DEFAULT '' COMMENT '序列号',
 
     `note`          varchar(255)        NOT NULL DEFAULT '' COMMENT '事由',
     `format`        varchar(255)        NOT NULL DEFAULT '' COMMENT '类型',
     `flow_no`       varchar(255)        NOT NULL DEFAULT '' COMMENT '流程号',
 
-    `creator_id`     bigint(20)          NOT NULL DEFAULT '0' COMMENT '创建人',
-    `creator_name`   varchar(64)         NOT NULL DEFAULT '' COMMENT '创建人名称',
-    `create_time`    timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `status`         varchar(50)         NOT NULL DEFAULT '' COMMENT '状态',
+    `creator_id`    bigint(20)          NOT NULL DEFAULT '0' COMMENT '创建人',
+    `creator_name`  varchar(64)         NOT NULL DEFAULT '' COMMENT '创建人名称',
+    `create_time`   timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `status`        varchar(50)         NOT NULL DEFAULT '' COMMENT '状态',
 
     `remark`        varchar(255)        NOT NULL DEFAULT '' COMMENT '备注',
     `delete_flag`   tinyint(2)          NOT NULL DEFAULT '0' COMMENT '作废标志 0 未作废 1作废',

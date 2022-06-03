@@ -3,6 +3,7 @@ package com.nafapap.memory.mgmt.economy.controller;
 import com.nafapap.memory.mgmt.economy.service.BillService;
 import com.nafapap.memory.mgmt.economy.service.FormatService;
 import com.nafapap.memory.mgmt.economy.transobj.FlowFormat;
+import com.nafapap.memory.mgmt.economy.transobj.FormatRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.FactumEntity;
@@ -42,7 +43,7 @@ public class FormatController {
     }
 
     @PostMapping("/create")
-    public ResponseView create(@RequestBody @Validated RequestDto dto) {
+    public ResponseView create(@RequestBody @Validated FormatRequestDto dto) {
         FormatEntity entity = formatService.create(dto);
         return ResponseView.build(entity);
     }

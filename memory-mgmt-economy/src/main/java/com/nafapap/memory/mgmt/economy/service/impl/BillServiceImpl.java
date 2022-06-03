@@ -5,6 +5,7 @@ import com.nafapap.memory.mgmt.economy.repository.BillRepository;
 import com.nafapap.memory.mgmt.economy.service.BillService;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.UserService;
+import com.nafapap.memory.mgmt.economy.transobj.FactumRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.UserBa;
@@ -40,7 +41,7 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public FactumEntity createForm(RequestDto dto) {
+    public FactumEntity createForm(FactumRequestDto dto) {
         FactumEntity entity = new FactumEntity()
                 .setFormat(dto.getFormat())
                 .setSerialNo(serialNoService.generate());
