@@ -16,7 +16,9 @@ import java.lang.annotation.*;
  */
 @Documented
 @Constraint(validatedBy = {
-        WithinValidator.class
+        WithinValidator.class,
+        WithinArrayValidator.class,
+        WithinCollectionValidator.class,
 })
 @Target({
         ElementType.METHOD,

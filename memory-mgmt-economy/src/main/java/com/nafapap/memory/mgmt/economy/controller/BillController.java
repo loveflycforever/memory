@@ -41,12 +41,6 @@ public class BillController {
         return ResponseView.build(entities);
     }
 
-    @GetMapping("/exhibit/expand")
-    public Object exhibitExpand(PageDto dto) {
-        List<FactumEntity> entities = billService.showForm(dto);
-        return ResponseView.build(entities);
-    }
-
     @PostMapping("/create")
     public ResponseView create(@RequestBody @Validated RequestDto dto) {
         String flowNo = null;
@@ -68,7 +62,7 @@ public class BillController {
             billService.join(formNo, flowNo);
         }
 
-        if(dto.getAuto()) {
+        if(Boolean.TRUE.equals(dto.getAuto())) {
             dto.setFormat(FlowFormat.EXAMINE.name());
             FactumEntity form = billService.createForm(dto);
             String formNo = form.getSerialNo();

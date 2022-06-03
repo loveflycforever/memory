@@ -3,11 +3,12 @@ package com.nafapap.memory.support.web.constraints;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashSet;
 
 /**
  * <p>Project: memory </p>
- * <p>Name: WithinValidator </p>
+ * <p>Name: WithinCollectionValidator </p>
  * <p>Description: ${描述} </p>
  * <p>Date: 2022/2/24 14:20 </p>
  * <p>Company: Cupshe Company Limited </p>
@@ -15,7 +16,7 @@ import java.util.HashSet;
  * @author yuchaofan
  * @version v1.0
  */
-public class WithinValidator implements ConstraintValidator<Within, String> {
+public class WithinCollectionValidator implements ConstraintValidator<Within, Collection<String>> {
 
     Class<?>[] clazz;
 
@@ -25,8 +26,8 @@ public class WithinValidator implements ConstraintValidator<Within, String> {
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        if (clazz.length <= 0 || value == null) {
+    public boolean isValid(Collection<String> value, ConstraintValidatorContext context) {
+        if (clazz.length <= 0 || value == null || value.isEmpty()) {
             return true;
         }
 
@@ -41,9 +42,15 @@ public class WithinValidator implements ConstraintValidator<Within, String> {
                         names.add(String.valueOf(name));
                     }
 
-                    if (names.contains(value)) {
-                        return true;
+                    boolean b = true;
+                    for (String v : value) {
+                        if (!names.contains(v)) {
+                            b = false;
+                            break;
+                        }
                     }
+
+                    return b;
                 }
             } catch (Exception e) {
                 e.printStackTrace();

@@ -40,6 +40,9 @@ public class RequestDto extends AuthDto {
     @NotNull
     private Boolean auto;
 
+    @NotNull
+    private Boolean expand;
+
 }
 
 
