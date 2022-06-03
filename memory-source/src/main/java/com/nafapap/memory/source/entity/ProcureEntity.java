@@ -6,13 +6,14 @@ import cn.org.atool.fluent.mybatis.annotation.TableField;
 import cn.org.atool.fluent.mybatis.annotation.TableId;
 import cn.org.atool.fluent.mybatis.annotation.Version;
 import cn.org.atool.fluent.mybatis.base.RichEntity;
+import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * ThingEntity: 数据映射实体定义
+ * ProcureEntity: 数据映射实体定义
  *
  * @author Powered By Fluent Mybatis
  */
@@ -25,10 +26,10 @@ import lombok.experimental.Accessors;
     callSuper = false
 )
 @FluentMybatis(
-    table = "t_thing",
+    table = "t_procure",
     schema = "s_memory"
 )
-public class ThingEntity extends RichEntity {
+public class ProcureEntity extends RichEntity {
   private static final long serialVersionUID = 1L;
 
   /**
@@ -67,6 +68,24 @@ public class ThingEntity extends RichEntity {
   private Boolean deleteFlag;
 
   /**
+   * 实际天数
+   */
+  @TableField("actual_day")
+  private Integer actualDay;
+
+  /**
+   * 实际可用总量
+   */
+  @TableField("amount")
+  private Integer amount;
+
+  /**
+   * 结束日期
+   */
+  @TableField("closing_date")
+  private String closingDate;
+
+  /**
    * 创建人
    */
   @TableField("creator_id")
@@ -79,16 +98,22 @@ public class ThingEntity extends RichEntity {
   private String creatorName;
 
   /**
-   * 类型编号
+   * 货币
    */
-  @TableField("format_id")
-  private Long formatId;
+  @TableField("currency")
+  private String currency;
 
   /**
-   * 名称
+   * 实际支出
    */
-  @TableField("name")
-  private String name;
+  @TableField("expense")
+  private BigDecimal expense;
+
+  /**
+   * 商品编号
+   */
+  @TableField("goods_id")
+  private Long goodsId;
 
   /**
    * 操作人
@@ -103,10 +128,52 @@ public class ThingEntity extends RichEntity {
   private String operatorName;
 
   /**
+   * 支付方式
+   */
+  @TableField("payment")
+  private String payment;
+
+  /**
+   * 计划使用日
+   */
+  @TableField("planned_day")
+  private Integer plannedDay;
+
+  /**
+   * 价格
+   */
+  @TableField("price")
+  private BigDecimal price;
+
+  /**
+   * 购买日期
+   */
+  @TableField("purchase_date")
+  private String purchaseDate;
+
+  /**
+   * 购买地点
+   */
+  @TableField("purchase_place")
+  private String purchasePlace;
+
+  /**
+   * 商品数量
+   */
+  @TableField("quantity")
+  private Integer quantity;
+
+  /**
    * 备注
    */
   @TableField("remark")
   private String remark;
+
+  /**
+   * 人民币
+   */
+  @TableField("rmb")
+  private BigDecimal rmb;
 
   /**
    * 序列号
@@ -127,6 +194,18 @@ public class ThingEntity extends RichEntity {
   private String summary;
 
   /**
+   * 付款方式
+   */
+  @TableField("transfer")
+  private String transfer;
+
+  /**
+   * 单位
+   */
+  @TableField("unit")
+  private String unit;
+
+  /**
    * 版本
    */
   @TableField(
@@ -139,6 +218,6 @@ public class ThingEntity extends RichEntity {
 
   @Override
   public final Class entityClass() {
-    return ThingEntity.class;
+    return ProcureEntity.class;
   }
 }

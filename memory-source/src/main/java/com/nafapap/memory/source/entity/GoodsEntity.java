@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * ThingEntity: 数据映射实体定义
+ * GoodsEntity: 数据映射实体定义
  *
  * @author Powered By Fluent Mybatis
  */
@@ -25,10 +25,10 @@ import lombok.experimental.Accessors;
     callSuper = false
 )
 @FluentMybatis(
-    table = "t_thing",
+    table = "t_goods",
     schema = "s_memory"
 )
-public class ThingEntity extends RichEntity {
+public class GoodsEntity extends RichEntity {
   private static final long serialVersionUID = 1L;
 
   /**
@@ -67,6 +67,18 @@ public class ThingEntity extends RichEntity {
   private Boolean deleteFlag;
 
   /**
+   * 条形码
+   */
+  @TableField("barcode")
+  private String barcode;
+
+  /**
+   * 品牌
+   */
+  @TableField("brand")
+  private String brand;
+
+  /**
    * 创建人
    */
   @TableField("creator_id")
@@ -79,10 +91,10 @@ public class ThingEntity extends RichEntity {
   private String creatorName;
 
   /**
-   * 类型编号
+   * 失效日期
    */
-  @TableField("format_id")
-  private Long formatId;
+  @TableField("expiration_date")
+  private String expirationDate;
 
   /**
    * 名称
@@ -101,6 +113,12 @@ public class ThingEntity extends RichEntity {
    */
   @TableField("operator_name")
   private String operatorName;
+
+  /**
+   * 生产日期
+   */
+  @TableField("production_date")
+  private String productionDate;
 
   /**
    * 备注
@@ -127,6 +145,36 @@ public class ThingEntity extends RichEntity {
   private String summary;
 
   /**
+   * 事物编号
+   */
+  @TableField("thing_id")
+  private Long thingId;
+
+  /**
+   * 单价
+   */
+  @TableField("unit_price")
+  private String unitPrice;
+
+  /**
+   * 规格
+   */
+  @TableField("unit_spec")
+  private String unitSpec;
+
+  /**
+   * 有效期时间
+   */
+  @TableField("validation_term")
+  private Integer validationTerm;
+
+  /**
+   * 有效期单位
+   */
+  @TableField("validation_unit")
+  private String validationUnit;
+
+  /**
    * 版本
    */
   @TableField(
@@ -139,6 +187,6 @@ public class ThingEntity extends RichEntity {
 
   @Override
   public final Class entityClass() {
-    return ThingEntity.class;
+    return GoodsEntity.class;
   }
 }

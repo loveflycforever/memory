@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * ThingEntity: 数据映射实体定义
+ * FormatEntity: 数据映射实体定义
  *
  * @author Powered By Fluent Mybatis
  */
@@ -25,10 +25,10 @@ import lombok.experimental.Accessors;
     callSuper = false
 )
 @FluentMybatis(
-    table = "t_thing",
+    table = "t_format",
     schema = "s_memory"
 )
-public class ThingEntity extends RichEntity {
+public class FormatEntity extends RichEntity {
   private static final long serialVersionUID = 1L;
 
   /**
@@ -77,12 +77,6 @@ public class ThingEntity extends RichEntity {
    */
   @TableField("creator_name")
   private String creatorName;
-
-  /**
-   * 类型编号
-   */
-  @TableField("format_id")
-  private Long formatId;
 
   /**
    * 名称
@@ -139,6 +133,6 @@ public class ThingEntity extends RichEntity {
 
   @Override
   public final Class entityClass() {
-    return ThingEntity.class;
+    return FormatEntity.class;
   }
 }

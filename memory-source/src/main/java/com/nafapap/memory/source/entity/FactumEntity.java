@@ -70,7 +70,7 @@ public class FactumEntity extends RichEntity {
    * 创建人
    */
   @TableField("creator_id")
-  private String creatorId;
+  private Long creatorId;
 
   /**
    * 创建人名称

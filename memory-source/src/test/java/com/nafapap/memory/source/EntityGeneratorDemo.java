@@ -37,6 +37,9 @@ public class EntityGeneratorDemo {
                     version = "version",
                     value = {
                             "t_thing",
+                            "t_format",
+                            "t_goods",
+                            "t_procure",
                             "t_factum"
                     })}
     )
