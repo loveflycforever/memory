@@ -1,5 +1,6 @@
 package com.nafapap.memory.mgmt.economy.service;
 
+import com.nafapap.memory.mgmt.economy.transobj.FormatRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.FormatEntity;
@@ -19,5 +20,5 @@ import java.util.List;
 public interface FormatService {
     List<FormatEntity> exhibit(PageDto dto);
 
-    FormatEntity create(RequestDto dto);
+    FormatEntity create(FormatRequestDto dto);
 }

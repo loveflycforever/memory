@@ -19,26 +19,9 @@ import javax.validation.constraints.NotNull;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class RequestDto extends AuthDto {
+public class FormatRequestDto extends RequestDto {
 
-    /**
-     * 单号
-     */
-    @NotBlank
-    private String takingNo;
-
-    /**
-     * 操作符
-     */
-    @NotBlank
-    private String operator;
-
-    @NotNull
-    private Boolean auto;
-
-    @NotNull
-    private Boolean expand;
-
+    private String name;
 }
 
 
