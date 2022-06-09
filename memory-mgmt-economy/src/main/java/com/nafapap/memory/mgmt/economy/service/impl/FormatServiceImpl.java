@@ -1,13 +1,10 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
-import com.nafapap.memory.mgmt.economy.repository.BillRepository;
 import com.nafapap.memory.mgmt.economy.repository.FormatRepository;
 import com.nafapap.memory.mgmt.economy.service.FormatService;
 import com.nafapap.memory.mgmt.economy.transobj.FormatRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
-import com.nafapap.memory.source.entity.FactumEntity;
-import com.nafapap.memory.source.entity.FormatEntity;
+import com.nafapap.memory.source.entity.SubjectEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,13 +27,13 @@ public class FormatServiceImpl implements FormatService {
     private final FormatRepository formatRepository;
 
     @Override
-    public List<FormatEntity> exhibit(PageDto dto) {
+    public List<SubjectEntity> exhibit(PageDto dto) {
         return formatRepository.select(dto);
     }
 
     @Override
-    public FormatEntity create(FormatRequestDto dto) {
-        FormatEntity entity = new FormatEntity()
+    public SubjectEntity create(FormatRequestDto dto) {
+        SubjectEntity entity = new SubjectEntity()
                 .setName(dto.getName());
         Long id = formatRepository.insert(entity);
         entity.setId(id);

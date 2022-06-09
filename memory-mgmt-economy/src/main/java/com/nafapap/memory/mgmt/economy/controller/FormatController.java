@@ -1,18 +1,12 @@
 package com.nafapap.memory.mgmt.economy.controller;
 
-import com.nafapap.memory.mgmt.economy.service.BillService;
 import com.nafapap.memory.mgmt.economy.service.FormatService;
-import com.nafapap.memory.mgmt.economy.transobj.FlowFormat;
 import com.nafapap.memory.mgmt.economy.transobj.FormatRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
-import com.nafapap.memory.source.entity.FactumEntity;
-import com.nafapap.memory.source.entity.FormatEntity;
+import com.nafapap.memory.source.entity.SubjectEntity;
 import com.nafapap.memory.support.web.ResponseView;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,13 +32,13 @@ public class FormatController {
 
     @GetMapping("/exhibit")
     public Object exhibit(PageDto dto) {
-        List<FormatEntity> entities = formatService.exhibit(dto);
+        List<SubjectEntity> entities = formatService.exhibit(dto);
         return ResponseView.build(entities);
     }
 
     @PostMapping("/create")
     public ResponseView create(@RequestBody @Validated FormatRequestDto dto) {
-        FormatEntity entity = formatService.create(dto);
+        SubjectEntity entity = formatService.create(dto);
         return ResponseView.build(entity);
     }
 

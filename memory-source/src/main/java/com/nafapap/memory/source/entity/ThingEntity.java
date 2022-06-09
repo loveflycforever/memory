@@ -79,12 +79,6 @@ public class ThingEntity extends RichEntity {
   private String creatorName;
 
   /**
-   * 类型编号
-   */
-  @TableField("format_id")
-  private Long formatId;
-
-  /**
    * 名称
    */
   @TableField("name")
@@ -119,6 +113,12 @@ public class ThingEntity extends RichEntity {
    */
   @TableField("status")
   private String status;
+
+  /**
+   * 类型编号
+   */
+  @TableField("subject_id")
+  private Long subjectId;
 
   /**
    * 简介

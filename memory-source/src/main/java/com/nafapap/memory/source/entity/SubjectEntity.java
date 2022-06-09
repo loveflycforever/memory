@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * FormatEntity: 数据映射实体定义
+ * SubjectEntity: 数据映射实体定义
  *
  * @author Powered By Fluent Mybatis
  */
@@ -25,10 +25,10 @@ import lombok.experimental.Accessors;
     callSuper = false
 )
 @FluentMybatis(
-    table = "t_format",
+    table = "t_subject",
     schema = "s_memory"
 )
-public class FormatEntity extends RichEntity {
+public class SubjectEntity extends RichEntity {
   private static final long serialVersionUID = 1L;
 
   /**
@@ -133,6 +133,6 @@ public class FormatEntity extends RichEntity {
 
   @Override
   public final Class entityClass() {
-    return FormatEntity.class;
+    return SubjectEntity.class;
   }
 }

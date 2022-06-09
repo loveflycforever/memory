@@ -1,19 +1,12 @@
 package com.nafapap.memory.mgmt.economy.controller;
 
-import com.nafapap.memory.mgmt.economy.service.BillService;
-import com.nafapap.memory.mgmt.economy.service.FormatService;
 import com.nafapap.memory.mgmt.economy.service.ProcureService;
-import com.nafapap.memory.mgmt.economy.transobj.FlowFormat;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
-import com.nafapap.memory.source.entity.FactumEntity;
-import com.nafapap.memory.source.entity.FormatEntity;
 import com.nafapap.memory.source.entity.ProcureEntity;
 import com.nafapap.memory.support.web.ResponseView;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

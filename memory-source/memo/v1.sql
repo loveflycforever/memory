@@ -30,7 +30,7 @@ CREATE TABLE `t_thing`
 
     `name`          varchar(100)        NOT NULL DEFAULT '' COMMENT '名称',
     `summary`       varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
-    `format_id`     bigint(20)          NOT NULL DEFAULT '0' COMMENT '类型编号',
+    `subject_id`     bigint(20)          NOT NULL DEFAULT '0' COMMENT '类型编号',
 
     `creator_id`    bigint(20)          NOT NULL DEFAULT '0' COMMENT '创建人',
     `creator_name`  varchar(64)         NOT NULL DEFAULT '' COMMENT '创建人名称',

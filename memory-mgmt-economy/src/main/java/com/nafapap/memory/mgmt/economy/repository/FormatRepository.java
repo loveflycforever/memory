@@ -2,12 +2,9 @@ package com.nafapap.memory.mgmt.economy.repository;
 
 import cn.org.atool.fluent.mybatis.model.StdPagedList;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.source.entity.FactumEntity;
-import com.nafapap.memory.source.entity.FormatEntity;
-import com.nafapap.memory.source.mapper.FactumMapper;
-import com.nafapap.memory.source.mapper.FormatMapper;
-import com.nafapap.memory.source.wrapper.FactumQuery;
-import com.nafapap.memory.source.wrapper.FormatQuery;
+import com.nafapap.memory.source.entity.SubjectEntity;
+import com.nafapap.memory.source.mapper.SubjectMapper;
+import com.nafapap.memory.source.wrapper.SubjectQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -27,10 +24,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FormatRepository {
 
-    private final FormatMapper fmFormatMapper;
+    private final SubjectMapper fmSubjectMapper;
 
-    public List<FormatEntity> select(PageDto dto) {
-        StdPagedList<FormatEntity> list = fmFormatMapper.stdPagedEntity(new FormatQuery()
+    public List<SubjectEntity> select(PageDto dto) {
+        StdPagedList<SubjectEntity> list = fmSubjectMapper.stdPagedEntity(new SubjectQuery()
                 .where.deleteFlag().isFalse().end()
                 .orderBy.id().asc().end()
                 .limit(dto.gainFrom(), dto.gainLimit())
@@ -39,7 +36,7 @@ public class FormatRepository {
         return list.getData();
     }
 
-    public Long insert(FormatEntity entity) {
-        return fmFormatMapper.save(entity);
+    public Long insert(SubjectEntity entity) {
+        return fmSubjectMapper.save(entity);
     }
 }
