@@ -5,6 +5,7 @@ import com.nafapap.memory.mgmt.economy.repository.TicketRepository;
 import com.nafapap.memory.mgmt.economy.service.TicketService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.TicketRequestDto;
+import com.nafapap.memory.source.entity.SubjectEntity;
 import com.nafapap.memory.source.entity.TicketEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,19 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public TicketEntity create(TicketRequestDto dto) {
-        return null;
+        TicketEntity entity = new TicketEntity()
+                .setName(dto.getName())
+                .setSummary(dto.getSummary())
+                .setPurchaseLocation(dto.getPurchaseLocation())
+                .setPurchaseDatetime(dto.getPurchaseDatetime())
+                .setPrice(dto.getPrice())
+                .setExpense(dto.getExpense())
+                .setCurrency(dto.getCurrency())
+                //.setChinaYuan(dto.getChinaYuan())
+                .setChannel(dto.getChannel())
+                .setPayment(dto.getPayment())
+                .setForward(dto.getForward());
+        ticketRepository.insert(entity);
+        return entity;
     }
 }

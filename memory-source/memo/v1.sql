@@ -136,7 +136,7 @@ CREATE TABLE `t_ticket`
     `china_yuan`     decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '人民币',
     `channel`        varchar(50)         NOT NULL DEFAULT '' COMMENT '渠道方式',
     `payment`        varchar(50)         NOT NULL DEFAULT '' COMMENT '支付方式',
-    `transfer`       varchar(50)         NOT NULL DEFAULT '' COMMENT '付款方式',
+    `forward`       varchar(50)         NOT NULL DEFAULT '' COMMENT '付款方式',
 
     `creator_id`     bigint(20)          NOT NULL DEFAULT '0' COMMENT '创建人',
     `creator_name`   varchar(64)         NOT NULL DEFAULT '' COMMENT '创建人名称',

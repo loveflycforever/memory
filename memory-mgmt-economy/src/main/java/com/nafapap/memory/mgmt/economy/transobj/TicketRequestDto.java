@@ -2,6 +2,8 @@ package com.nafapap.memory.mgmt.economy.transobj;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
  * <p>Project: memory </p>
  * <p>Name: TicketRequestDto </p>
@@ -17,14 +19,12 @@ public class TicketRequestDto {
 
     private String name;
     private String summary;
-    private String purchasePlace;
-    private String purchaseDate;
-    private String purchaseTime;
-    private String price;
-    private String expense;
+    private String purchaseLocation;
+    private String purchaseDatetime;
+    private BigDecimal price;
+    private BigDecimal expense;
     private String currency;
-    private String chinaYuan;
     private String channel;
     private String payment;
-    private String transfer;
+    private String forward;
 }

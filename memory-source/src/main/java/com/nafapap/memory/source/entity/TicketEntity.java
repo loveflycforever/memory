@@ -104,6 +104,12 @@ public class TicketEntity extends RichEntity {
   private BigDecimal expense;
 
   /**
+   * 付款方式
+   */
+  @TableField("forward")
+  private String forward;
+
+  /**
    * 名称
    */
   @TableField("name")
@@ -168,12 +174,6 @@ public class TicketEntity extends RichEntity {
    */
   @TableField("summary")
   private String summary;
-
-  /**
-   * 付款方式
-   */
-  @TableField("transfer")
-  private String transfer;
 
   /**
    * 版本
