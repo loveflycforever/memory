@@ -93,7 +93,7 @@ CREATE TABLE `t_procure`
     `price`          decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '价格',
     `expense`        decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '实际支出',
     `currency`       varchar(20)         NOT NULL DEFAULT '' COMMENT '货币',
-    `chinaYuan`      decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '人民币',
+    `china_yuan`     decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '人民币',
     `amount`         int(11)             NOT NULL DEFAULT '0' COMMENT '实际可用总量',
     `unit`           varchar(10)         NOT NULL DEFAULT '' COMMENT '单位',
 
@@ -133,7 +133,7 @@ CREATE TABLE `t_ticket`
     `price`          decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '价格',
     `expense`        decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '实际支出',
     `currency`       varchar(20)         NOT NULL DEFAULT '' COMMENT '货币',
-    `chinaYuan`      decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '人民币',
+    `china_yuan`     decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '人民币',
     `channel`        varchar(50)         NOT NULL DEFAULT '' COMMENT '渠道方式',
     `payment`        varchar(50)         NOT NULL DEFAULT '' COMMENT '支付方式',
     `transfer`       varchar(50)         NOT NULL DEFAULT '' COMMENT '付款方式',

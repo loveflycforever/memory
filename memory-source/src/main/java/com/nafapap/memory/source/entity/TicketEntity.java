@@ -76,7 +76,7 @@ public class TicketEntity extends RichEntity {
   /**
    * 人民币
    */
-  @TableField("chinaYuan")
+  @TableField("china_yuan")
   private BigDecimal chinaYuan;
 
   /**
