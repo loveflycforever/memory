@@ -202,7 +202,7 @@
                             "icon": "text-field",
                             "formItemFlag": true,
                             "options": {
-                                "name": "purchasePlace",
+                                "name": "purchaseLocation",
                                 "label": "购买地点",
                                 "labelAlign": "",
                                 "type": "text",
@@ -380,7 +380,7 @@
                             "icon": "number-field",
                             "formItemFlag": true,
                             "options": {
-                                "name": "number7395",
+                                "name": "price",
                                 "label": "价格",
                                 "labelAlign": "",
                                 "defaultValue": 0,
@@ -437,7 +437,7 @@
                             "icon": "number-field",
                             "formItemFlag": true,
                             "options": {
-                                "name": "number65869",
+                                "name": "expense",
                                 "label": "实际支出",
                                 "labelAlign": "",
                                 "defaultValue": 0,
@@ -680,7 +680,7 @@
                             "icon": "select-field",
                             "formItemFlag": true,
                             "options": {
-                                "name": "transfer",
+                                "name": "forward",
                                 "label": "付款方式",
                                 "labelAlign": "",
                                 "defaultValue": "PRE",
@@ -780,8 +780,8 @@
         methods: {
             submitForm: function () {
                 this.$refs.vFormRef.getFormData().then(function (formData) {
-                    alert(JSON.stringify(formData))
-
+                    formData.purchaseDatetime = formData.purchaseDate + ' ' + formData.purchaseTime
+                    // alert(JSON.stringify(formData))
                     $.ajax({
                         url: '/memory/ticket/create',
                         data: JSON.stringify(formData),
