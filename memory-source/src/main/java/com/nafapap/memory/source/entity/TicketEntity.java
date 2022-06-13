@@ -68,6 +68,18 @@ public class TicketEntity extends RichEntity {
   private Boolean deleteFlag;
 
   /**
+   * 渠道方式
+   */
+  @TableField("channel")
+  private String channel;
+
+  /**
+   * 人民币
+   */
+  @TableField("chinaYuan")
+  private BigDecimal chinaYuan;
+
+  /**
    * 创建人
    */
   @TableField("creator_id")
@@ -78,6 +90,12 @@ public class TicketEntity extends RichEntity {
    */
   @TableField("creator_name")
   private String creatorName;
+
+  /**
+   * 货币
+   */
+  @TableField("currency")
+  private String currency;
 
   /**
    * 实际支出
@@ -108,6 +126,24 @@ public class TicketEntity extends RichEntity {
    */
   @TableField("payment")
   private String payment;
+
+  /**
+   * 价格
+   */
+  @TableField("price")
+  private BigDecimal price;
+
+  /**
+   * 购买日期
+   */
+  @TableField("purchase_date")
+  private String purchaseDate;
+
+  /**
+   * 购买地点
+   */
+  @TableField("purchase_place")
+  private String purchasePlace;
 
   /**
    * 备注

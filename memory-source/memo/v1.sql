@@ -30,7 +30,7 @@ CREATE TABLE `t_thing`
 
     `name`          varchar(100)        NOT NULL DEFAULT '' COMMENT '名称',
     `summary`       varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
-    `subject_id`     bigint(20)          NOT NULL DEFAULT '0' COMMENT '类型编号',
+    `subject_id`    bigint(20)          NOT NULL DEFAULT '0' COMMENT '类型编号',
 
     `creator_id`    bigint(20)          NOT NULL DEFAULT '0' COMMENT '创建人',
     `creator_name`  varchar(64)         NOT NULL DEFAULT '' COMMENT '创建人名称',
@@ -93,7 +93,7 @@ CREATE TABLE `t_procure`
     `price`          decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '价格',
     `expense`        decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '实际支出',
     `currency`       varchar(20)         NOT NULL DEFAULT '' COMMENT '货币',
-    `rmb`            decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '人民币',
+    `chinaYuan`      decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '人民币',
     `amount`         int(11)             NOT NULL DEFAULT '0' COMMENT '实际可用总量',
     `unit`           varchar(10)         NOT NULL DEFAULT '' COMMENT '单位',
 
@@ -123,26 +123,32 @@ CREATE TABLE `t_procure`
 
 CREATE TABLE `t_ticket`
 (
-    `id`            bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
-    `serial_no`     varchar(100)        NOT NULL DEFAULT '' COMMENT '序列号',
+    `id`             bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
+    `serial_no`      varchar(100)        NOT NULL DEFAULT '' COMMENT '序列号',
 
-    `name`          varchar(100)        NOT NULL DEFAULT '' COMMENT '名称',
-    `summary`       varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
-    `expense`       decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '实际支出',
-    `payment`       varchar(50)         NOT NULL DEFAULT '' COMMENT '支付方式',
-    `transfer`      varchar(50)         NOT NULL DEFAULT '' COMMENT '付款方式',
+    `name`           varchar(100)        NOT NULL DEFAULT '' COMMENT '名称',
+    `summary`        varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
+    `purchase_place` varchar(255)        NOT NULL DEFAULT '' COMMENT '购买地点',
+    `purchase_date`  varchar(50)         NOT NULL DEFAULT '' COMMENT '购买日期',
+    `price`          decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '价格',
+    `expense`        decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '实际支出',
+    `currency`       varchar(20)         NOT NULL DEFAULT '' COMMENT '货币',
+    `chinaYuan`      decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '人民币',
+    `channel`        varchar(50)         NOT NULL DEFAULT '' COMMENT '渠道方式',
+    `payment`        varchar(50)         NOT NULL DEFAULT '' COMMENT '支付方式',
+    `transfer`       varchar(50)         NOT NULL DEFAULT '' COMMENT '付款方式',
 
-    `creator_id`    bigint(20)          NOT NULL DEFAULT '0' COMMENT '创建人',
-    `creator_name`  varchar(64)         NOT NULL DEFAULT '' COMMENT '创建人名称',
-    `create_time`   timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `status`        varchar(50)         NOT NULL DEFAULT '' COMMENT '状态',
+    `creator_id`     bigint(20)          NOT NULL DEFAULT '0' COMMENT '创建人',
+    `creator_name`   varchar(64)         NOT NULL DEFAULT '' COMMENT '创建人名称',
+    `create_time`    timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `status`         varchar(50)         NOT NULL DEFAULT '' COMMENT '状态',
 
-    `remark`        varchar(255)        NOT NULL DEFAULT '' COMMENT '备注',
-    `delete_flag`   tinyint(2)          NOT NULL DEFAULT '0' COMMENT '作废标志 0 未作废 1作废',
-    `operator_id`   bigint(20)          NOT NULL DEFAULT '0' COMMENT '操作人',
-    `operator_name` varchar(64)         NOT NULL DEFAULT '' COMMENT '操作人名称',
-    `operate_time`  timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '操作时间',
-    `version`       int(11)             NOT NULL DEFAULT '0' COMMENT '版本',
+    `remark`         varchar(255)        NOT NULL DEFAULT '' COMMENT '备注',
+    `delete_flag`    tinyint(2)          NOT NULL DEFAULT '0' COMMENT '作废标志 0 未作废 1作废',
+    `operator_id`    bigint(20)          NOT NULL DEFAULT '0' COMMENT '操作人',
+    `operator_name`  varchar(64)         NOT NULL DEFAULT '' COMMENT '操作人名称',
+    `operate_time`   timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '操作时间',
+    `version`        int(11)             NOT NULL DEFAULT '0' COMMENT '版本',
     PRIMARY KEY (`id`) USING BTREE,
     KEY `operate_sort` (`operate_time`)
 ) ENGINE = InnoDB
