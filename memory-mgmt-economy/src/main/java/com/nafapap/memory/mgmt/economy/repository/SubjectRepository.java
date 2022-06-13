@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * <p>Project: memory </p>
- * <p>Name: FormatRepository </p>
+ * <p>Name: SubjectRepository </p>
  * <p>Description: ${描述} </p>
  * <p>Date: 2022/6/3 22:11 </p>
  * <p>Company: Cupshe Company Limited </p>
@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Component
 @RequiredArgsConstructor
-public class FormatRepository {
+public class SubjectRepository {
 
     private final SubjectMapper fmSubjectMapper;
 

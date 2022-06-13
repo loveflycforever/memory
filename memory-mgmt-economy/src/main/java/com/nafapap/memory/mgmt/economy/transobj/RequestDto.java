@@ -33,12 +33,14 @@ public class RequestDto extends AuthDto {
     @NotBlank
     private String operator;
 
-    @NotNull
     private Boolean auto;
 
-    @NotNull
-    private Boolean expand;
+    //@NotNull
+    //private Boolean expand;
 
+    public Boolean getAuto() {
+        return auto == null ? false : auto;
+    }
 }
 
 

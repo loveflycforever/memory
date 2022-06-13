@@ -1,15 +1,11 @@
 package com.nafapap.memory.mgmt.economy.transobj;
 
-import com.nafapap.memory.support.web.constraints.Within;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
 /**
  * <p>Project: memory </p>
- * <p>Name: RequestDto </p>
+ * <p>Name: SubjectRequestDto </p>
  * <p>Description: ${描述} </p>
  * <p>Date: 2022/2/24 14:20 </p>
  * <p>Company: Cupshe Company Limited </p>
@@ -19,9 +15,11 @@ import javax.validation.constraints.NotNull;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class FormatRequestDto extends RequestDto {
+public class SubjectRequestDto extends RequestDto {
 
     private String name;
+
+    private String text;
 }
 
 
