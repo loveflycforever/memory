@@ -136,14 +136,14 @@ public class TicketEntity extends RichEntity {
   /**
    * 购买日期
    */
-  @TableField("purchase_date")
-  private String purchaseDate;
+  @TableField("purchase_datetime")
+  private String purchaseDatetime;
 
   /**
    * 购买地点
    */
-  @TableField("purchase_place")
-  private String purchasePlace;
+  @TableField("purchase_location")
+  private String purchaseLocation;
 
   /**
    * 备注
