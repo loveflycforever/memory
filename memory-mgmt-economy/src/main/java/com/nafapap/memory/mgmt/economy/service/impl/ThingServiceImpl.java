@@ -2,7 +2,7 @@ package com.nafapap.memory.mgmt.economy.service.impl;
 
 import com.nafapap.memory.mgmt.economy.service.ThingService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.ThingRequestDto;
 import com.nafapap.memory.source.entity.ThingEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class ThingServiceImpl implements ThingService {
     }
 
     @Override
-    public ThingEntity create(RequestDto dto) {
+    public ThingEntity create(ThingRequestDto dto) {
         return null;
     }
 }

@@ -35,8 +35,7 @@ public class SubjectServiceImpl implements SubjectService {
     public SubjectEntity create(SubjectRequestDto dto) {
         SubjectEntity entity = new SubjectEntity()
                 .setName(dto.getName());
-        Long id = subjectRepository.insert(entity);
-        entity.setId(id);
+        subjectRepository.insert(entity);
         return entity;
     }
 }

@@ -45,8 +45,7 @@ public class BillServiceImpl implements BillService {
         FactumEntity entity = new FactumEntity()
                 .setFormat(dto.getFormat())
                 .setSerialNo(serialNoService.generate());
-        Long id = billRepository.insertForm(entity);
-        entity.setId(id);
+        billRepository.insertForm(entity);
         return entity;
     }
 

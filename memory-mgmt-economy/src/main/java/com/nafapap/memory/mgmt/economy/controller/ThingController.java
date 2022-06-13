@@ -3,6 +3,7 @@ package com.nafapap.memory.mgmt.economy.controller;
 import com.nafapap.memory.mgmt.economy.service.ThingService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.ThingRequestDto;
 import com.nafapap.memory.source.entity.ThingEntity;
 import com.nafapap.memory.support.web.ResponseView;
 import io.swagger.annotations.Api;
@@ -22,7 +23,7 @@ import java.util.List;
  * @author yuchaofan
  * @version v1.0
  */
-@Api(tags = "每日接口")
+@Api(tags = "ThingController")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/thing")
@@ -37,7 +38,7 @@ public class ThingController {
     }
 
     @PostMapping("/create")
-    public ResponseView create(@RequestBody @Validated RequestDto dto) {
+    public ResponseView create(@RequestBody @Validated ThingRequestDto dto) {
         ThingEntity entity = thingService.create(dto);
         return ResponseView.build(entity);
     }

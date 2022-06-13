@@ -22,10 +22,10 @@ import java.util.List;
  * @author yuchaofan
  * @version v1.0
  */
-@Api(tags = "每日接口")
+@Api(tags = "SubjectController")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/format")
+@RequestMapping("/subject")
 public class SubjectController {
 
     private final SubjectService subjectService;

@@ -22,7 +22,7 @@ import java.util.List;
  * @author yuchaofan
  * @version v1.0
  */
-@Api(tags = "每日接口")
+@Api(tags = "GoodsController")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/goods")
