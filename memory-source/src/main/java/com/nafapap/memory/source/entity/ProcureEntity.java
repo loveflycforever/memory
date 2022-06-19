@@ -82,8 +82,8 @@ public class ProcureEntity extends RichEntity {
   /**
    * 结束日期
    */
-  @TableField("closing_date")
-  private String closingDate;
+  @TableField("closed_date")
+  private String closedDate;
 
   /**
    * 创建人
@@ -124,11 +124,11 @@ public class ProcureEntity extends RichEntity {
   /**
    * 计划使用日
    */
-  @TableField("planned_day")
-  private Integer plannedDay;
+  @TableField("plan_day")
+  private Integer planDay;
 
   /**
-   * 购买价格
+   * 价格
    */
   @TableField("price")
   private BigDecimal price;

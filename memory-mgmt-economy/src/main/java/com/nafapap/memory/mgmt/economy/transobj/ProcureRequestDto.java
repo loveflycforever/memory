@@ -33,7 +33,7 @@ public class ProcureRequestDto extends AuthDto {
     private BigDecimal chinaYuan;
     private Integer hold;
     private String unit;
-    private Integer plannedDay;
-    private String closingDate;
+    private Integer planDay;
+    private String closedDate;
     private Integer actualDay;
 }

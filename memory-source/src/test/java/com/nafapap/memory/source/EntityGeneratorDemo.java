@@ -36,7 +36,7 @@ public class EntityGeneratorDemo {
                     gmtModified = "operate_time",
                     version = "version",
                     value = {
-                            "t_thing"
+                            "t_procure"
                     })}
     )
     static class Empty { //类名随便取, 只是配置定义的一个载体

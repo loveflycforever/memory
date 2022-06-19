@@ -59,8 +59,8 @@ public class ProcureServiceImpl implements ProcureService {
                 .setChinaYuan(dto.getChinaYuan())
                 .setHold(dto.getHold())
                 .setUnit(dto.getUnit())
-                .setPlannedDay(dto.getPlannedDay())
-                .setClosingDate(dto.getClosingDate())
+                .setPlanDay(dto.getPlanDay())
+                .setClosedDate(dto.getClosedDate())
                 .setActualDay(dto.getActualDay());
         procureRepository.insert(entity);
         return entity;
