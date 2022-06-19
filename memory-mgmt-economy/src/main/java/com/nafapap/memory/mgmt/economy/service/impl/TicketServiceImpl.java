@@ -3,8 +3,7 @@ package com.nafapap.memory.mgmt.economy.service.impl;
 import com.nafapap.memory.mgmt.economy.repository.SubjectRepository;
 import com.nafapap.memory.mgmt.economy.repository.TicketRepository;
 import com.nafapap.memory.mgmt.economy.service.TicketService;
-import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.TicketRequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.*;
 import com.nafapap.memory.source.entity.SubjectEntity;
 import com.nafapap.memory.source.entity.TicketEntity;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +29,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<TicketEntity> exhibit(PageDto dto) {
-        return null;
+        return ticketRepository.select(dto);
     }
 
     @Override
@@ -42,11 +41,10 @@ public class TicketServiceImpl implements TicketService {
                 .setPurchaseDatetime(dto.getPurchaseDatetime())
                 .setPrice(dto.getPrice())
                 .setExpense(dto.getExpense())
-                .setCurrency(dto.getCurrency())
-                //.setChinaYuan(dto.getChinaYuan())
-                .setChannel(dto.getChannel())
-                .setPayment(dto.getPayment())
-                .setForward(dto.getForward());
+                .setCurrency(CurrencyEnum.valueOf(dto.getCurrency()).name())
+                .setChannel(ChannelEnum.valueOf(dto.getChannel()).getValue())
+                .setPayment(PaymentEnum.valueOf(dto.getPayment()).getValue())
+                .setForward(ForwardEnum.valueOf(dto.getForward()).getValue());
         ticketRepository.insert(entity);
         return entity;
     }

@@ -31,7 +31,7 @@ public class TicketRepository {
     public List<TicketEntity> select(PageDto dto) {
         StdPagedList<TicketEntity> list = fmTicketMapper.stdPagedEntity(new TicketQuery()
                 .where.deleteFlag().isFalse().end()
-                .orderBy.id().asc().end()
+                .orderBy.purchaseDatetime().desc().end()
                 .limit(dto.gainFrom(), dto.gainLimit())
         );
 
