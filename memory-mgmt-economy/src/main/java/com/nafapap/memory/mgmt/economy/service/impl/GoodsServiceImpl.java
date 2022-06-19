@@ -1,10 +1,16 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
+import com.nafapap.memory.mgmt.economy.repository.GoodsRepository;
+import com.nafapap.memory.mgmt.economy.repository.ThingRepository;
 import com.nafapap.memory.mgmt.economy.service.GoodsService;
-import com.nafapap.memory.mgmt.economy.transobj.GoodsRequestDto;
-import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.mgmt.economy.service.SerialNoService;
+import com.nafapap.memory.mgmt.economy.transobj.*;
 import com.nafapap.memory.source.entity.GoodsEntity;
+import com.nafapap.memory.source.entity.ThingEntity;
+import com.nafapap.memory.source.entity.TicketEntity;
+import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,14 +27,46 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
+@SerialNo(prefix = "gd")
 public class GoodsServiceImpl implements GoodsService {
+
+    private final GoodsRepository goodsRepository;
+    private final ThingRepository thingRepository;
+
+    private final SerialNoService serialNoService;
+
     @Override
     public List<GoodsEntity> exhibit(PageDto dto) {
-        return null;
+        return goodsRepository.select(dto);
     }
 
     @Override
     public GoodsEntity create(GoodsRequestDto dto) {
-        return null;
+        PageDto pageDto = new PageDto();
+        pageDto.setTakingNo(dto.getBelongSerialNo());
+
+        List<ThingEntity> things = thingRepository.select(pageDto);
+        if (CollectionUtils.isEmpty(things) || things.size() != 1) {
+            throw new RuntimeException("xxx");
+        }
+
+        ThingEntity thingEntity = things.get(0);
+
+        GoodsEntity entity = new GoodsEntity()
+                //.setSerialNo(serialNoService.generate())
+                //.setThingId(dto.getThingId())
+                //.setBrand(dto.getBrand())
+                //.setName(dto.getName())
+                //.setSummary(dto.getSummary())
+                //.setProductionDate(dto.getProductionDate())
+                //.setValidationTerm(dto.getValidationTerm())
+                //.setValidationUnit(dto.getValidationUnit())
+                //.setExpirationDate(dto.getExpirationDate())
+                //.setBarcode(dto.getBarcode())
+                //.setUnitPrice(dto.getUnitPrice())
+                //.setUnitSpec(dto.getUnitSpec())
+                ;
+        goodsRepository.insert(entity);
+        return entity;
     }
 }

@@ -1,9 +1,14 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
+import com.nafapap.memory.mgmt.economy.repository.ThingRepository;
+import com.nafapap.memory.mgmt.economy.repository.TicketRepository;
+import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.ThingService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ThingRequestDto;
+import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.source.entity.ThingEntity;
+import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +26,27 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
+@SerialNo(prefix = "tg")
 public class ThingServiceImpl implements ThingService {
+
+    private final ThingRepository thingRepository;
+
+    private final SerialNoService serialNoService;
+
     @Override
     public List<ThingEntity> exhibit(PageDto dto) {
-        return null;
+        return thingRepository.select(dto);
     }
 
     @Override
     public ThingEntity create(ThingRequestDto dto) {
-        return null;
+        ThingEntity entity = new ThingEntity()
+                .setSerialNo(serialNoService.generate())
+                .setName(dto.getName())
+                .setSummary(dto.getSummary())
+                //.setSubjectId()
+                ;
+        thingRepository.insert(entity);
+        return entity;
     }
 }

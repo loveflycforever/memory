@@ -1,9 +1,20 @@
 package com.nafapap.memory.mgmt.economy.repository;
 
+import cn.org.atool.fluent.mybatis.model.StdPagedList;
+import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.source.entity.ThingEntity;
+import com.nafapap.memory.source.entity.TicketEntity;
+import com.nafapap.memory.source.helper.ThingSegment;
+import com.nafapap.memory.source.helper.TicketSegment;
 import com.nafapap.memory.source.mapper.GoodsMapper;
 import com.nafapap.memory.source.mapper.ThingMapper;
+import com.nafapap.memory.source.wrapper.ThingQuery;
+import com.nafapap.memory.source.wrapper.TicketQuery;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * <p>Project: memory </p>
@@ -20,4 +31,22 @@ import org.springframework.stereotype.Component;
 public class ThingRepository {
 
     private final ThingMapper fmThingMapper;
+
+    public List<ThingEntity> select(PageDto dto) {
+        ThingSegment.QueryWhere queryWhere = new ThingQuery().where.deleteFlag().isFalse();
+        if(StringUtils.isNotBlank(dto.getTakingNo())) {
+            queryWhere.and.serialNo().eq(dto.getTakingNo());
+        }
+        ThingQuery query = queryWhere.end();
+        StdPagedList<ThingEntity> list = fmThingMapper.stdPagedEntity(
+                query.orderBy.id().desc().end()
+                        .limit(dto.gainFrom(), dto.gainLimit())
+        );
+
+        return list.getData();
+    }
+
+    public Long insert(ThingEntity entity) {
+        return fmThingMapper.save(entity);
+    }
 }

@@ -20,4 +20,5 @@ public class ThingRequestDto extends AuthDto {
     private String belongSerialNo;
     private String name;
     private String summary;
+    private String symbol;
 }

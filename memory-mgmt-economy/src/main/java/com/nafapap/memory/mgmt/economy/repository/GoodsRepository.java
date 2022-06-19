@@ -1,9 +1,16 @@
 package com.nafapap.memory.mgmt.economy.repository;
 
-import com.nafapap.memory.source.mapper.FactumMapper;
+import cn.org.atool.fluent.mybatis.model.StdPagedList;
+import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.source.entity.GoodsEntity;
+import com.nafapap.memory.source.helper.GoodsSegment;
 import com.nafapap.memory.source.mapper.GoodsMapper;
+import com.nafapap.memory.source.wrapper.GoodsQuery;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * <p>Project: memory </p>
@@ -20,4 +27,22 @@ import org.springframework.stereotype.Component;
 public class GoodsRepository {
 
     private final GoodsMapper fmGoodsMapper;
+
+    public List<GoodsEntity> select(PageDto dto) {
+        GoodsSegment.QueryWhere queryWhere = new GoodsQuery().where.deleteFlag().isFalse();
+        if(StringUtils.isNotBlank(dto.getTakingNo())) {
+            queryWhere.and.serialNo().eq(dto.getTakingNo());
+        }
+        GoodsQuery query = queryWhere.end();
+        StdPagedList<GoodsEntity> list = fmGoodsMapper.stdPagedEntity(
+                query.orderBy.id().desc().end()
+                        .limit(dto.gainFrom(), dto.gainLimit())
+        );
+
+        return list.getData();
+    }
+
+    public Long insert(GoodsEntity entity) {
+        return fmGoodsMapper.save(entity);
+    }
 }
