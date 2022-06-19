@@ -91,7 +91,7 @@ CREATE TABLE `t_procure`
 
     `x_goods`           varchar(50)         NOT NULL DEFAULT '' COMMENT '商品',
     `summary`           varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
-    `purchase_amount`   int(11)             NOT NULL DEFAULT '0' COMMENT '购买数量',
+    `purchase_quantity` int(11)             NOT NULL DEFAULT '0' COMMENT '购买数量',
     `purchase_location` varchar(255)        NOT NULL DEFAULT '' COMMENT '购买地点',
     `purchase_datetime` varchar(50)         NOT NULL DEFAULT '' COMMENT '购买日期',
     `price`             decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '购买价格',
