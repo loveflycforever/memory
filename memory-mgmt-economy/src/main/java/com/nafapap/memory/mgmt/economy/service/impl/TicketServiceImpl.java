@@ -2,10 +2,12 @@ package com.nafapap.memory.mgmt.economy.service.impl;
 
 import com.nafapap.memory.mgmt.economy.repository.SubjectRepository;
 import com.nafapap.memory.mgmt.economy.repository.TicketRepository;
+import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.TicketService;
 import com.nafapap.memory.mgmt.economy.transobj.*;
 import com.nafapap.memory.source.entity.SubjectEntity;
 import com.nafapap.memory.source.entity.TicketEntity;
+import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +25,12 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
+@SerialNo(prefix = "tk")
 public class TicketServiceImpl implements TicketService {
 
     private final TicketRepository ticketRepository;
+
+    private final SerialNoService serialNoService;
 
     @Override
     public List<TicketEntity> exhibit(PageDto dto) {
@@ -35,6 +40,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public TicketEntity create(TicketRequestDto dto) {
         TicketEntity entity = new TicketEntity()
+                .setSerialNo(serialNoService.generate())
                 .setName(dto.getName())
                 .setSummary(dto.getSummary())
                 .setPurchaseLocation(dto.getPurchaseLocation())

@@ -1,7 +1,11 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
+import com.nafapap.memory.support.web.constraints.SerialNo;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * <p>Project: memory </p>
@@ -15,8 +19,25 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SerialNoServiceImpl implements SerialNoService {
+
     @Override
-    public String generate() {
-        return String.valueOf(System.currentTimeMillis());
+    public synchronized String generate() {
+        String result = DateFormatUtils.format(new Date(), "yyyyMMddHHmmsss");
+
+        String callerClassName = new Exception().getStackTrace()[1].getClassName();
+        try {
+            Class<?> callerClass = Class.forName(callerClassName);
+
+            if (callerClass.isAnnotationPresent(SerialNo.class)) {
+                String prefix = callerClass.getAnnotation(SerialNo.class).prefix();
+                result = prefix + result;
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
+
+
 }
