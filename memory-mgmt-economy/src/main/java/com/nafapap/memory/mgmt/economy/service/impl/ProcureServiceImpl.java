@@ -9,6 +9,7 @@ import com.nafapap.memory.mgmt.economy.transobj.ProcureRequestDto;
 import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.source.entity.ProcureEntity;
 import com.nafapap.memory.source.entity.ThingEntity;
+import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,7 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
+@SerialNo(prefix = "pc")
 public class ProcureServiceImpl implements ProcureService {
 
     private final ProcureRepository procureRepository;
