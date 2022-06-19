@@ -1,5 +1,11 @@
 package com.nafapap.memory.mgmt.economy.transobj;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
+
 /**
  * <p>Project: memory </p>
  * <p>Name: ProcureRequestDto </p>
@@ -10,5 +16,24 @@ package com.nafapap.memory.mgmt.economy.transobj;
  * @author yuchaofan
  * @version v1.0
  */
-public class ProcureRequestDto {
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class ProcureRequestDto extends AuthDto {
+
+    @NotBlank
+    private String belongSerialNo;
+
+
+    private String summary;
+    private Integer purchaseQuantity;
+    private String purchaseLocation;
+    private String purchaseDatetime;
+    private BigDecimal price;
+    private String currency;
+    private BigDecimal chinaYuan;
+    private Integer hold;
+    private String unit;
+    private Integer plannedDay;
+    private String closingDate;
+    private Integer actualDay;
 }

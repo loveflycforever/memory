@@ -1,7 +1,7 @@
 package com.nafapap.memory.mgmt.economy.service;
 
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.ProcureRequestDto;
 import com.nafapap.memory.source.entity.ProcureEntity;
 
 import java.util.List;
@@ -19,5 +19,5 @@ import java.util.List;
 public interface ProcureService {
     List<ProcureEntity> exhibit(PageDto dto);
 
-    ProcureEntity create(RequestDto dto);
+    ProcureEntity create(ProcureRequestDto dto);
 }

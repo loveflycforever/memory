@@ -10,6 +10,7 @@ import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.source.entity.ThingEntity;
 import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,13 +41,22 @@ public class ThingServiceImpl implements ThingService {
 
     @Override
     public ThingEntity create(ThingRequestDto dto) {
+        String belongSerialNo = dto.getBelongSerialNo();
+        String symbol = getSymbol(belongSerialNo);
+
         ThingEntity entity = new ThingEntity()
                 .setSerialNo(serialNoService.generate())
+                .setXSubject(symbol)
                 .setName(dto.getName())
                 .setSummary(dto.getSummary())
-                //.setSubjectId()
+                .setSymbol(dto.getSymbol())
                 ;
         thingRepository.insert(entity);
         return entity;
+    }
+
+
+    private String getSymbol(String belongSerialNo) {
+        return "";
     }
 }

@@ -1,12 +1,19 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
+import com.nafapap.memory.mgmt.economy.repository.GoodsRepository;
+import com.nafapap.memory.mgmt.economy.repository.ProcureRepository;
 import com.nafapap.memory.mgmt.economy.service.ProcureService;
+import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.ProcureRequestDto;
+import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.source.entity.ProcureEntity;
+import com.nafapap.memory.source.entity.ThingEntity;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -22,13 +29,50 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProcureServiceImpl implements ProcureService {
+
+    private final ProcureRepository procureRepository;
+    private final GoodsRepository goodsRepository;
+
+    private final SerialNoService serialNoService;
+
     @Override
     public List<ProcureEntity> exhibit(PageDto dto) {
-        return null;
+        return procureRepository.select(dto);
     }
 
     @Override
-    public ProcureEntity create(RequestDto dto) {
-        return null;
+    public ProcureEntity create(ProcureRequestDto dto) {
+        String belongSerialNo = dto.getBelongSerialNo();
+        String symbol = getSymbol(belongSerialNo);
+
+        ProcureEntity entity = new ProcureEntity()
+                .setSerialNo(serialNoService.generate())
+                .setXGoods(symbol)
+                .setSummary(dto.getSummary())
+                .setPurchaseQuantity(dto.getPurchaseQuantity())
+                .setPurchaseLocation(dto.getPurchaseLocation())
+                .setPurchaseDatetime(dto.getPurchaseDatetime())
+                .setPrice(dto.getPrice())
+                .setCurrency(dto.getCurrency())
+                .setChinaYuan(dto.getChinaYuan())
+                .setHold(dto.getHold())
+                .setUnit(dto.getUnit())
+                .setPlannedDay(dto.getPlannedDay())
+                .setClosingDate(dto.getClosingDate())
+                .setActualDay(dto.getActualDay());
+        procureRepository.insert(entity);
+        return entity;
+    }
+
+    private String getSymbol(String belongSerialNo) {
+        PageDto pageDto = new PageDto();
+        pageDto.setTakingNo(belongSerialNo);
+
+        List<GoodsEntity> goodsEntities = goodsRepository.select(pageDto);
+        if (CollectionUtils.isEmpty(goodsEntities) || goodsEntities.size() != 1) {
+            throw new RuntimeException("xxx");
+        }
+
+        return "goods" + goodsEntities.get(0).getId();
     }
 }

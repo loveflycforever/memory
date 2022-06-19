@@ -2,6 +2,7 @@ package com.nafapap.memory.mgmt.economy.controller;
 
 import com.nafapap.memory.mgmt.economy.service.ProcureService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.mgmt.economy.transobj.ProcureRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.ProcureEntity;
 import com.nafapap.memory.support.web.ResponseView;
@@ -37,7 +38,7 @@ public class ProcureController {
     }
 
     @PostMapping("/create")
-    public ResponseView create(@RequestBody @Validated RequestDto dto) {
+    public ResponseView create(@RequestBody @Validated ProcureRequestDto dto) {
         ProcureEntity entity = procureService.create(dto);
         return ResponseView.build(entity);
     }

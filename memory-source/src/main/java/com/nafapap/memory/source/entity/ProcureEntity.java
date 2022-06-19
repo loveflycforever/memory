@@ -134,12 +134,6 @@ public class ProcureEntity extends RichEntity {
   private BigDecimal price;
 
   /**
-   * 购买数量
-   */
-  @TableField("purchase_amount")
-  private Integer purchaseAmount;
-
-  /**
    * 购买日期
    */
   @TableField("purchase_datetime")
@@ -148,8 +142,14 @@ public class ProcureEntity extends RichEntity {
   /**
    * 购买地点
    */
-  @TableField("purchase_place")
-  private String purchasePlace;
+  @TableField("purchase_location")
+  private String purchaseLocation;
+
+  /**
+   * 购买数量
+   */
+  @TableField("purchase_quantity")
+  private Integer purchaseQuantity;
 
   /**
    * 备注

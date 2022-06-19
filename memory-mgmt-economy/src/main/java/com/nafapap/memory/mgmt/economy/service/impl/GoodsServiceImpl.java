@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -42,19 +43,12 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public GoodsEntity create(GoodsRequestDto dto) {
-        PageDto pageDto = new PageDto();
-        pageDto.setTakingNo(dto.getBelongSerialNo());
-
-        List<ThingEntity> things = thingRepository.select(pageDto);
-        if (CollectionUtils.isEmpty(things) || things.size() != 1) {
-            throw new RuntimeException("xxx");
-        }
-
-        ThingEntity thingEntity = things.get(0);
+        String belongSerialNo = dto.getBelongSerialNo();
+        String symbol = getSymbol(belongSerialNo);
 
         GoodsEntity entity = new GoodsEntity()
                 .setSerialNo(serialNoService.generate())
-                .setXThing(thingEntity.getSymbol())
+                .setXThing(symbol)
                 .setBrand(dto.getBrand())
                 .setName(dto.getName())
                 .setSummary(dto.getSummary())
@@ -67,5 +61,17 @@ public class GoodsServiceImpl implements GoodsService {
                 .setUnitSpec(dto.getUnitSpec());
         goodsRepository.insert(entity);
         return entity;
+    }
+
+    private String getSymbol(String belongSerialNo) {
+        PageDto pageDto = new PageDto();
+        pageDto.setTakingNo(belongSerialNo);
+
+        List<ThingEntity> things = thingRepository.select(pageDto);
+        if (CollectionUtils.isEmpty(things) || things.size() != 1) {
+            throw new RuntimeException("xxx");
+        }
+
+        return things.get(0).getSymbol();
     }
 }
