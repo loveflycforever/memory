@@ -137,12 +137,6 @@ public class ThingEntity extends RichEntity {
   @Version
   private Long version;
 
-  /**
-   * 类型编号
-   */
-  @TableField("x_subject")
-  private String xSubject;
-
   @Override
   public final Class entityClass() {
     return ThingEntity.class;

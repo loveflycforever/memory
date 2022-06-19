@@ -28,7 +28,6 @@ CREATE TABLE `t_thing`
     `id`            bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
     `serial_no`     varchar(100)        NOT NULL DEFAULT '' COMMENT '序列号',
 
-    `x_subject`     varchar(50)         NOT NULL DEFAULT '' COMMENT '类型编号',
     `name`          varchar(100)        NOT NULL DEFAULT '' COMMENT '名称',
     `summary`       varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
     `symbol`        varchar(255)        NOT NULL DEFAULT '' COMMENT '标识',

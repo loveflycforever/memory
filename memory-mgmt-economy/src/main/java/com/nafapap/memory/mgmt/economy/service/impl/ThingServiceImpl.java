@@ -41,22 +41,14 @@ public class ThingServiceImpl implements ThingService {
 
     @Override
     public ThingEntity create(ThingRequestDto dto) {
-        String belongSerialNo = dto.getBelongSerialNo();
-        String symbol = getSymbol(belongSerialNo);
 
         ThingEntity entity = new ThingEntity()
                 .setSerialNo(serialNoService.generate())
-                .setXSubject(symbol)
                 .setName(dto.getName())
                 .setSummary(dto.getSummary())
                 .setSymbol(dto.getSymbol())
                 ;
         thingRepository.insert(entity);
         return entity;
-    }
-
-
-    private String getSymbol(String belongSerialNo) {
-        return "";
     }
 }
