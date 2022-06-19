@@ -1,5 +1,6 @@
 package com.nafapap.memory.mgmt.economy.transobj;
 
+import com.nafapap.memory.support.web.constraints.Within;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -23,8 +24,12 @@ public class TicketRequestDto {
     private String purchaseDatetime;
     private BigDecimal price;
     private BigDecimal expense;
+    @Within(message = "类型输入错误",value = CurrencyEnum.class )
     private String currency;
+    @Within(message = "类型输入错误",value = ChannelEnum.class )
     private String channel;
+    @Within(message = "类型输入错误",value = PaymentEnum.class )
     private String payment;
+    @Within(message = "类型输入错误",value = ForwardEnum.class )
     private String forward;
 }
