@@ -1,8 +1,8 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
 import com.nafapap.memory.mgmt.economy.service.GoodsService;
+import com.nafapap.memory.mgmt.economy.transobj.GoodsRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.GoodsEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public GoodsEntity create(RequestDto dto) {
+    public GoodsEntity create(GoodsRequestDto dto) {
         return null;
     }
 }

@@ -1,5 +1,8 @@
 package com.nafapap.memory.mgmt.economy.transobj;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  * <p>Project: memory </p>
  * <p>Name: ProcureRequestDto </p>
@@ -10,5 +13,11 @@ package com.nafapap.memory.mgmt.economy.transobj;
  * @author yuchaofan
  * @version v1.0
  */
-public class ThingRequestDto {
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class ThingRequestDto extends AuthDto {
+
+    private String belongSerialNo;
+    private String name;
+    private String summary;
 }

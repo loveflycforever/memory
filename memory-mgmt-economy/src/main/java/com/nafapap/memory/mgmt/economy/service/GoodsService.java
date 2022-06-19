@@ -1,7 +1,7 @@
 package com.nafapap.memory.mgmt.economy.service;
 
+import com.nafapap.memory.mgmt.economy.transobj.GoodsRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.GoodsEntity;
 
 import java.util.List;
@@ -19,5 +19,5 @@ import java.util.List;
 public interface GoodsService {
     List<GoodsEntity> exhibit(PageDto dto);
 
-    GoodsEntity create(RequestDto dto);
+    GoodsEntity create(GoodsRequestDto dto);
 }

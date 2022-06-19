@@ -2,6 +2,7 @@ package com.nafapap.memory.mgmt.economy.transobj;
 
 import com.nafapap.memory.support.web.constraints.Within;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
@@ -15,8 +16,9 @@ import java.math.BigDecimal;
  * @author yuchaofan
  * @version v1.0
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class TicketRequestDto {
+public class TicketRequestDto extends AuthDto {
 
     private String name;
     private String summary;

@@ -1,6 +1,7 @@
 package com.nafapap.memory.mgmt.economy.controller;
 
 import com.nafapap.memory.mgmt.economy.service.GoodsService;
+import com.nafapap.memory.mgmt.economy.transobj.GoodsRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.GoodsEntity;
@@ -38,7 +39,7 @@ public class GoodsController {
     }
 
     @PostMapping("/create")
-    public ResponseView create(@RequestBody @Validated RequestDto dto) {
+    public ResponseView create(@RequestBody @Validated GoodsRequestDto dto) {
         GoodsEntity entity = goodsService.create(dto);
         return ResponseView.build(entity);
     }
