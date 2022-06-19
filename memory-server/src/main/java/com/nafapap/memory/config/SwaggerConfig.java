@@ -42,7 +42,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Memory接口文档")
-                .description("万寿无疆")
+                .description("Memory的接口的文档")
                 .contact(new Contact("papafan", "https://www.papafan.com/", "papafan2020@outlook.com"))
                 .version("1.0")
                 .build();
