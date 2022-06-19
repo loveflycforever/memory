@@ -92,7 +92,7 @@ CREATE TABLE `t_procure`
     `x_goods`           varchar(50)         NOT NULL DEFAULT '' COMMENT '商品',
     `summary`           varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
     `purchase_amount`   int(11)             NOT NULL DEFAULT '0' COMMENT '购买数量',
-    `purchase_place`    varchar(255)        NOT NULL DEFAULT '' COMMENT '购买地点',
+    `purchase_location` varchar(255)        NOT NULL DEFAULT '' COMMENT '购买地点',
     `purchase_datetime` varchar(50)         NOT NULL DEFAULT '' COMMENT '购买日期',
     `price`             decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '购买价格',
     `currency`          varchar(20)         NOT NULL DEFAULT '' COMMENT '货币',
@@ -128,7 +128,7 @@ CREATE TABLE `t_ticket`
 
     `name`              varchar(100)        NOT NULL DEFAULT '' COMMENT '名称',
     `summary`           varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
-    `purchase_place`    varchar(255)        NOT NULL DEFAULT '' COMMENT '购买地点',
+    `purchase_location` varchar(255)        NOT NULL DEFAULT '' COMMENT '购买地点',
     `purchase_datetime` varchar(50)         NOT NULL DEFAULT '' COMMENT '购买时间',
     `price`             decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '价格',
     `expense`           decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '实际支出',

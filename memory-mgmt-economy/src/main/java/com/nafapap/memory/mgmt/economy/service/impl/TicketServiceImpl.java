@@ -1,16 +1,15 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
-import com.nafapap.memory.mgmt.economy.repository.SubjectRepository;
 import com.nafapap.memory.mgmt.economy.repository.TicketRepository;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.TicketService;
 import com.nafapap.memory.mgmt.economy.transobj.*;
-import com.nafapap.memory.source.entity.SubjectEntity;
 import com.nafapap.memory.source.entity.TicketEntity;
 import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -48,6 +47,7 @@ public class TicketServiceImpl implements TicketService {
                 .setPrice(dto.getPrice())
                 .setExpense(dto.getExpense())
                 .setCurrency(CurrencyEnum.valueOf(dto.getCurrency()).name())
+                .setChinaYuan(CurrencyEnum.valueOf(dto.getCurrency()) != CurrencyEnum.CNY ? BigDecimal.ZERO : dto.getExpense())
                 .setChannel(ChannelEnum.valueOf(dto.getChannel()).getValue())
                 .setPayment(PaymentEnum.valueOf(dto.getPayment()).getValue())
                 .setForward(ForwardEnum.valueOf(dto.getForward()).getValue());
