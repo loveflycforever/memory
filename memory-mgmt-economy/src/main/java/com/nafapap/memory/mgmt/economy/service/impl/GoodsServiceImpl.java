@@ -53,19 +53,18 @@ public class GoodsServiceImpl implements GoodsService {
         ThingEntity thingEntity = things.get(0);
 
         GoodsEntity entity = new GoodsEntity()
-                //.setSerialNo(serialNoService.generate())
-                //.setThingId(dto.getThingId())
-                //.setBrand(dto.getBrand())
-                //.setName(dto.getName())
-                //.setSummary(dto.getSummary())
-                //.setProductionDate(dto.getProductionDate())
-                //.setValidationTerm(dto.getValidationTerm())
-                //.setValidationUnit(dto.getValidationUnit())
-                //.setExpirationDate(dto.getExpirationDate())
-                //.setBarcode(dto.getBarcode())
-                //.setUnitPrice(dto.getUnitPrice())
-                //.setUnitSpec(dto.getUnitSpec())
-                ;
+                .setSerialNo(serialNoService.generate())
+                .setXThing(thingEntity.getSymbol())
+                .setBrand(dto.getBrand())
+                .setName(dto.getName())
+                .setSummary(dto.getSummary())
+                .setProductionDate(dto.getProductionDate())
+                .setValidationTerm(dto.getValidationTerm())
+                .setValidationUnit(dto.getValidationUnit())
+                .setExpirationDate(dto.getExpirationDate())
+                .setBarcode(dto.getBarcode())
+                .setUnitPrice(dto.getUnitPrice())
+                .setUnitSpec(dto.getUnitSpec());
         goodsRepository.insert(entity);
         return entity;
     }

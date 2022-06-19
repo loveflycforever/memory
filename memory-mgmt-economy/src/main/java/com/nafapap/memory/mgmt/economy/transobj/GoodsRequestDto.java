@@ -27,7 +27,7 @@ public class GoodsRequestDto extends AuthDto {
     private String brand;
     private String summary;
     private String productionDate;
-    private String validationTerm;
+    private Integer validationTerm;
     private String validationUnit;
     private String expirationDate;
     private String barcode;

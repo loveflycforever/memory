@@ -6,6 +6,7 @@ import cn.org.atool.fluent.mybatis.annotation.TableField;
 import cn.org.atool.fluent.mybatis.annotation.TableId;
 import cn.org.atool.fluent.mybatis.annotation.Version;
 import cn.org.atool.fluent.mybatis.base.RichEntity;
+import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -148,7 +149,7 @@ public class GoodsEntity extends RichEntity {
    * 单价
    */
   @TableField("unit_price")
-  private String unitPrice;
+  private BigDecimal unitPrice;
 
   /**
    * 规格

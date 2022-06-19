@@ -64,7 +64,7 @@ CREATE TABLE `t_goods`
     `validation_unit` varchar(10)         NOT NULL DEFAULT '' COMMENT '有效期单位',
     `expiration_date` varchar(50)         NOT NULL DEFAULT '' COMMENT '失效日期',
     `barcode`         varchar(50)         NOT NULL DEFAULT '' COMMENT '条形码',
-    `unit_price`      varchar(255)        NOT NULL DEFAULT '' COMMENT '单价',
+    `unit_price`      decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '单价',
     `unit_spec`       varchar(255)        NOT NULL DEFAULT '' COMMENT '规格',
 
     `creator_id`      bigint(20)          NOT NULL DEFAULT '0' COMMENT '创建人',
