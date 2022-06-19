@@ -115,16 +115,16 @@ public class ThingEntity extends RichEntity {
   private String status;
 
   /**
-   * 类型编号
-   */
-  @TableField("subject_id")
-  private Long subjectId;
-
-  /**
    * 简介
    */
   @TableField("summary")
   private String summary;
+
+  /**
+   * 标识
+   */
+  @TableField("symbol")
+  private String symbol;
 
   /**
    * 版本
@@ -136,6 +136,12 @@ public class ThingEntity extends RichEntity {
   )
   @Version
   private Long version;
+
+  /**
+   * 类型编号
+   */
+  @TableField("x_subject")
+  private String xSubject;
 
   @Override
   public final Class entityClass() {

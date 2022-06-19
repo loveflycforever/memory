@@ -145,12 +145,6 @@ public class GoodsEntity extends RichEntity {
   private String summary;
 
   /**
-   * 事物编号
-   */
-  @TableField("thing_id")
-  private Long thingId;
-
-  /**
    * 单价
    */
   @TableField("unit_price")
@@ -184,6 +178,12 @@ public class GoodsEntity extends RichEntity {
   )
   @Version
   private Long version;
+
+  /**
+   * 事物
+   */
+  @TableField("x_thing")
+  private String xThing;
 
   @Override
   public final Class entityClass() {

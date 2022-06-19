@@ -74,10 +74,10 @@ public class ProcureEntity extends RichEntity {
   private Integer actualDay;
 
   /**
-   * 实际可用总量
+   * 人民币
    */
-  @TableField("amount")
-  private Integer amount;
+  @TableField("china_yuan")
+  private BigDecimal chinaYuan;
 
   /**
    * 结束日期
@@ -104,16 +104,10 @@ public class ProcureEntity extends RichEntity {
   private String currency;
 
   /**
-   * 实际支出
+   * 实际可用总量
    */
-  @TableField("expense")
-  private BigDecimal expense;
-
-  /**
-   * 商品编号
-   */
-  @TableField("goods_id")
-  private Long goodsId;
+  @TableField("hold")
+  private Integer hold;
 
   /**
    * 操作人
@@ -128,28 +122,28 @@ public class ProcureEntity extends RichEntity {
   private String operatorName;
 
   /**
-   * 支付方式
-   */
-  @TableField("payment")
-  private String payment;
-
-  /**
    * 计划使用日
    */
   @TableField("planned_day")
   private Integer plannedDay;
 
   /**
-   * 价格
+   * 购买价格
    */
   @TableField("price")
   private BigDecimal price;
 
   /**
+   * 购买数量
+   */
+  @TableField("purchase_amount")
+  private Integer purchaseAmount;
+
+  /**
    * 购买日期
    */
-  @TableField("purchase_date")
-  private String purchaseDate;
+  @TableField("purchase_datetime")
+  private String purchaseDatetime;
 
   /**
    * 购买地点
@@ -158,22 +152,10 @@ public class ProcureEntity extends RichEntity {
   private String purchasePlace;
 
   /**
-   * 商品数量
-   */
-  @TableField("quantity")
-  private Integer quantity;
-
-  /**
    * 备注
    */
   @TableField("remark")
   private String remark;
-
-  /**
-   * 人民币
-   */
-  @TableField("rmb")
-  private BigDecimal rmb;
 
   /**
    * 序列号
@@ -194,12 +176,6 @@ public class ProcureEntity extends RichEntity {
   private String summary;
 
   /**
-   * 付款方式
-   */
-  @TableField("transfer")
-  private String transfer;
-
-  /**
    * 单位
    */
   @TableField("unit")
@@ -215,6 +191,12 @@ public class ProcureEntity extends RichEntity {
   )
   @Version
   private Long version;
+
+  /**
+   * 商品
+   */
+  @TableField("x_goods")
+  private String xGoods;
 
   @Override
   public final Class entityClass() {
