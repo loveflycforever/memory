@@ -37,7 +37,7 @@ public class GoodsRequestDto extends AuthDto {
     private String unitSpec;
 
     public NameString getThingName() {
-        return new NameString(name);
+        return new NameString(thingName);
     }
 
     public BelongSerialNo getBelongSerialNo() {
