@@ -13,6 +13,6 @@ import lombok.Data;
  * @version v1.0
  */
 @Data
-public class AuthDto {
+public abstract class AuthDto {
     private String userToken;
 }
