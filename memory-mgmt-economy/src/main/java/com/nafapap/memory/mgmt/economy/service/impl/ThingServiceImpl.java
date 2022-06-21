@@ -10,7 +10,14 @@ import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.source.entity.ThingEntity;
 import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,14 +48,44 @@ public class ThingServiceImpl implements ThingService {
 
     @Override
     public ThingEntity create(ThingRequestDto dto) {
+        if (StringUtils.isBlank(dto.getSymbol())) {
+            dto.setSymbol(getAllSpell(dto.getName()));
+        }
 
+        if (StringUtils.isBlank(dto.getSummary())) {
+            dto.setSummary("这是" + dto.getName());
+        }
         ThingEntity entity = new ThingEntity()
                 .setSerialNo(serialNoService.generate())
                 .setName(dto.getName())
                 .setSummary(dto.getSummary())
-                .setSymbol(dto.getSymbol())
-                ;
+                .setSymbol(dto.getSymbol());
         thingRepository.insert(entity);
         return entity;
     }
+
+    public static String getAllSpell(String chinese) {
+        StringBuilder buffer = new StringBuilder();
+        HanyuPinyinOutputFormat formart = new HanyuPinyinOutputFormat();
+        formart.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+        formart.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        formart.setVCharType(HanyuPinyinVCharType.WITH_V);
+        char[] array = chinese.trim().toCharArray();
+        try {
+            for (char t : array) {
+                // 匹配是否是中文
+                if (Character.toString(t).matches("[\\u4e00-\\u9fa5]")) {
+                    String[] temp = PinyinHelper.toHanyuPinyinStringArray(t, formart);
+                    String str = StringUtils.capitalize(temp[0]);
+                    buffer.append(str);
+                } else {
+                    buffer.append(t);
+                }
+            }
+        } catch (BadHanyuPinyinOutputFormatCombination e) {
+            e.printStackTrace();
+        }
+        return buffer.toString().replaceAll("\\W", "").trim();
+    }
+
 }
