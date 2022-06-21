@@ -17,7 +17,7 @@ public enum ChannelEnum {
     /**
      *
      */
-    SHOP("店付"), PDD("拼多多"), TAO("淘宝");
+    SHOP("店付"), PDD("拼多多"), TAO("淘宝"), DEF("DEF");
 
     @Getter
     private final String value;

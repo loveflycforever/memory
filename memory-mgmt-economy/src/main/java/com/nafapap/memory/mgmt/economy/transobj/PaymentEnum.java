@@ -17,7 +17,10 @@ public enum PaymentEnum {
     /**
      *
      */
-    HUA_BEI("蚂蚁花呗"),WX_PAY("微信支付");
+    HUA_BEI("蚂蚁花呗"),
+    WX_PAY("微信支付"),
+    ZHAO_HANG("招行卡")
+    ;
 
     @Getter
     private final String value;
