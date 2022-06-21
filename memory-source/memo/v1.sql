@@ -90,14 +90,14 @@ CREATE TABLE `t_procure`
 
     `x_goods`           varchar(50)         NOT NULL DEFAULT '' COMMENT '商品',
     `summary`           varchar(255)        NOT NULL DEFAULT '' COMMENT '简介',
-    `purchase_quantity` int(11)             NOT NULL DEFAULT '0' COMMENT '购买数量',
+    `purchase_quantity` decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '购买数量',
     `purchase_location` varchar(255)        NOT NULL DEFAULT '' COMMENT '购买地点',
     `purchase_datetime` varchar(50)         NOT NULL DEFAULT '' COMMENT '购买日期',
     `price`             decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '价格',
     `currency`          varchar(20)         NOT NULL DEFAULT '' COMMENT '货币',
     `china_yuan`        decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '人民币',
 
-    `hold`              int(11)             NOT NULL DEFAULT '0' COMMENT '实际可用总量',
+    `hold`              decimal(14, 4)      NOT NULL DEFAULT 0.0000 COMMENT '实际可用总量',
     `unit`              varchar(10)         NOT NULL DEFAULT '' COMMENT '单位',
     `plan_day`       int(11)             NOT NULL DEFAULT '0' COMMENT '计划使用日',
     `closed_date`      varchar(50)         NOT NULL DEFAULT '' COMMENT '结束日期',
