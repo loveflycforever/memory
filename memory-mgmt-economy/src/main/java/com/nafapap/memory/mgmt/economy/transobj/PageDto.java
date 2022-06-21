@@ -39,11 +39,11 @@ public class PageDto extends AuthDto {
     }
 
     public Integer getNumber() {
-        return this.number != null && this.number >= DEFAULT_NUMBER ? this.number : DEFAULT_NUMBER;
+        return this.number == null || this.number < DEFAULT_NUMBER ? DEFAULT_NUMBER : this.number;
     }
 
     public Integer getSize() {
-        return this.size != null && this.size >= DEFAULT_NUMBER ? this.size : DEFAULT_SIZE;
+        return this.size == null || this.size < DEFAULT_NUMBER || this.size > DEFAULT_NUMBER * 3 ? DEFAULT_SIZE : this.size;
     }
 
     public Integer gainLimit() {

@@ -34,7 +34,7 @@ public class TicketController {
 
     @ApiOperation("展示")
     @GetMapping("/exhibit")
-    public Object exhibit(PageDto dto) {
+    public Object exhibit(@RequestParam PageDto dto) {
         List<TicketVO> entities = ticketService.exhibit(dto);
         return ResponseView.build(entities);
     }
