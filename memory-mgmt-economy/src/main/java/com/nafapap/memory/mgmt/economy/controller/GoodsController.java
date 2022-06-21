@@ -2,6 +2,7 @@ package com.nafapap.memory.mgmt.economy.controller;
 
 import com.nafapap.memory.mgmt.economy.service.GoodsService;
 import com.nafapap.memory.mgmt.economy.transobj.GoodsRequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.GoodsVO;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.GoodsEntity;
@@ -34,7 +35,7 @@ public class GoodsController {
 
     @GetMapping("/exhibit")
     public Object exhibit(PageDto dto) {
-        List<GoodsEntity> entities = goodsService.exhibit(dto);
+        List<GoodsVO> entities = goodsService.exhibit(dto);
         return ResponseView.build(entities);
     }
 

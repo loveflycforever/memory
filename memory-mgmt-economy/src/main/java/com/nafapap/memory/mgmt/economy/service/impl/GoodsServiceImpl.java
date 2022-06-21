@@ -37,7 +37,7 @@ public class GoodsServiceImpl implements GoodsService {
     private final SerialNoService serialNoService;
 
     @Override
-    public List<GoodsEntity> exhibit(PageDto dto) {
+    public List<GoodsVO> exhibit(PageDto dto) {
         return goodsRepository.select(dto);
     }
 

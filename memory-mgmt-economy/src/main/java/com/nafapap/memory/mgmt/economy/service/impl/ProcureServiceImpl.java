@@ -4,6 +4,7 @@ import com.nafapap.memory.mgmt.economy.repository.GoodsRepository;
 import com.nafapap.memory.mgmt.economy.repository.ProcureRepository;
 import com.nafapap.memory.mgmt.economy.service.ProcureService;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
+import com.nafapap.memory.mgmt.economy.transobj.GoodsVO;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ProcureRequestDto;
 import com.nafapap.memory.source.entity.GoodsEntity;
@@ -70,7 +71,7 @@ public class ProcureServiceImpl implements ProcureService {
         PageDto pageDto = new PageDto();
         pageDto.setTakingNo(belongSerialNo);
 
-        List<GoodsEntity> goodsEntities = goodsRepository.select(pageDto);
+        List<GoodsVO> goodsEntities = goodsRepository.select(pageDto);
         if (CollectionUtils.isEmpty(goodsEntities) || goodsEntities.size() != 1) {
             throw new RuntimeException("xxx");
         }
