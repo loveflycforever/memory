@@ -3,7 +3,9 @@ package com.nafapap.memory.mgmt.economy.transobj;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
@@ -25,15 +27,21 @@ public class ProcureRequestDto extends AuthDto {
 
 
     private String summary;
-    private Integer purchaseQuantity;
+    @NotNull
+    @Min(value = 1)
+    private BigDecimal purchaseQuantity;
     private String purchaseLocation;
     private String purchaseDatetime;
     private BigDecimal price;
     private String currency;
     private BigDecimal chinaYuan;
-    private Integer hold;
-    private String unit;
+    //private Integer hold;
+    //private String unit;
     private Integer planDay;
     private String closedDate;
     private Integer actualDay;
+
+    public BelongSerialNo getBelongSerialNo() {
+        return new BelongSerialNo(belongSerialNo);
+    }
 }

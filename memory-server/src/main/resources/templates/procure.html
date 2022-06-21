@@ -831,6 +831,7 @@
             submitForm: function () {
                 this.$refs.vFormRef.getFormData().then(function (formData) {
                     // alert( JSON.stringify(formData) )
+                    formData.purchaseDatetime = formData.purchaseDate + ' ' + formData.purchaseTime
                     $.ajax({
                         url: '/memory/procure/create',
                         data: JSON.stringify(formData),

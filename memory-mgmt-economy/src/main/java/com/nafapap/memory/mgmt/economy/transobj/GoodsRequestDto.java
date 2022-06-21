@@ -39,10 +39,6 @@ public class GoodsRequestDto extends AuthDto {
     public NameString getThingName() {
         return new NameString(thingName);
     }
-
-    public BelongSerialNo getBelongSerialNo() {
-        return new BelongSerialNo(belongSerialNo);
-    }
 }
 
 

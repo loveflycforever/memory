@@ -4,6 +4,7 @@ import com.nafapap.memory.mgmt.economy.repository.GoodsRepository;
 import com.nafapap.memory.mgmt.economy.repository.ProcureRepository;
 import com.nafapap.memory.mgmt.economy.service.ProcureService;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
+import com.nafapap.memory.mgmt.economy.transobj.BelongSerialNo;
 import com.nafapap.memory.mgmt.economy.transobj.GoodsVO;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ProcureRequestDto;
@@ -16,6 +17,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -45,37 +47,76 @@ public class ProcureServiceImpl implements ProcureService {
 
     @Override
     public ProcureEntity create(ProcureRequestDto dto) {
-        String belongSerialNo = dto.getBelongSerialNo();
+        BelongSerialNo belongSerialNo = dto.getBelongSerialNo();
         String symbol = getSymbol(belongSerialNo);
+        GoodsVO goods = getGoods(belongSerialNo);
+        if (dto.getPrice() == null) {
+            BigDecimal unitPrice = goods.getUnitPrice();
+            BigDecimal purchaseQuantity = dto.getPurchaseQuantity();
+            dto.setPrice(unitPrice.multiply(purchaseQuantity));
+        }
+
+        if (dto.getChinaYuan() == null) {
+            dto.setChinaYuan(dto.getPrice());
+        }
+
+        String unitSpec = goods.getUnitSpec();
+        String[] split = unitSpec.split("/");
+        String front = split[0];
+        String[] frontSplit = front.split(" ");
+        String frontFirst = frontSplit[0];
+        String frontEnd = frontSplit[1];
+        String back = split[1];
+
+        BigDecimal hold = dto.getPurchaseQuantity().multiply(new BigDecimal(frontFirst));
+        String unit = frontEnd;
+
+        String purchaseSpecific = back;
 
         ProcureEntity entity = new ProcureEntity()
                 .setSerialNo(serialNoService.generate())
                 .setXGoods(symbol)
                 .setSummary(dto.getSummary())
                 .setPurchaseQuantity(dto.getPurchaseQuantity())
+                .setPurchaseSpecific(purchaseSpecific)
                 .setPurchaseLocation(dto.getPurchaseLocation())
                 .setPurchaseDatetime(dto.getPurchaseDatetime())
                 .setPrice(dto.getPrice())
                 .setCurrency(dto.getCurrency())
                 .setChinaYuan(dto.getChinaYuan())
-                .setHold(dto.getHold())
-                .setUnit(dto.getUnit())
+                .setHold(hold)
+                .setUnit(unit)
                 .setPlanDay(dto.getPlanDay())
                 .setClosedDate(dto.getClosedDate())
-                .setActualDay(dto.getActualDay());
+                .setActualDay(dto.getActualDay())
+                ;
         procureRepository.insert(entity);
         return entity;
     }
 
-    private String getSymbol(String belongSerialNo) {
+    private String getSymbol(BelongSerialNo belongSerialNo) {
         PageDto pageDto = new PageDto();
-        pageDto.setTakingNo(belongSerialNo);
+        pageDto.setTakingNo(belongSerialNo.getValue());
+        pageDto.onlyOne();
 
         List<GoodsVO> goodsEntities = goodsRepository.select(pageDto);
-        if (CollectionUtils.isEmpty(goodsEntities) || goodsEntities.size() != 1) {
+        if (CollectionUtils.isEmpty(goodsEntities)) {
             throw new RuntimeException("xxx");
         }
 
         return "goods" + goodsEntities.get(0).getId();
+    }
+
+    private GoodsVO getGoods(BelongSerialNo belongSerialNo) {
+        PageDto pageDto = new PageDto();
+        pageDto.setTakingNo(belongSerialNo.getValue());
+        pageDto.onlyOne();
+
+        List<GoodsVO> goodsEntities = goodsRepository.select(pageDto);
+        if (CollectionUtils.isEmpty(goodsEntities)) {
+            throw new RuntimeException("xxx");
+        }
+
+        return goodsEntities.get(0);
     }
 }

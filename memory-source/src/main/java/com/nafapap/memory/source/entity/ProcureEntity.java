@@ -107,7 +107,7 @@ public class ProcureEntity extends RichEntity {
    * 实际可用总量
    */
   @TableField("hold")
-  private Integer hold;
+  private BigDecimal hold;
 
   /**
    * 操作人
@@ -149,7 +149,13 @@ public class ProcureEntity extends RichEntity {
    * 购买数量
    */
   @TableField("purchase_quantity")
-  private Integer purchaseQuantity;
+  private BigDecimal purchaseQuantity;
+
+  /**
+   * 购买单位
+   */
+  @TableField("purchase_specific")
+  private String purchaseSpecific;
 
   /**
    * 备注
