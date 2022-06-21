@@ -39,7 +39,7 @@ public class ProcureRequestDto extends AuthDto {
     //private String unit;
     private Integer planDay;
     private String closedDate;
-    private Integer actualDay;
+    //private Integer actualDay;
 
     public BelongSerialNo getBelongSerialNo() {
         return new BelongSerialNo(belongSerialNo);

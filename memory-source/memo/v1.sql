@@ -1,3 +1,11 @@
+-- 1、重置已有数据主键
+-- SET @rownum = 0;
+-- UPDATE table_name SET id = @rownum := @rownum +1;
+
+-- 2、修改自增主键，beginIndex为查询出来的最大id+1
+-- SELECT max(id)+1 from table_name;
+-- alter table table_name auto_increment= beginIndex;
+
 CREATE TABLE `t_subject`
 (
     `id`            bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一编号',

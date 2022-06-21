@@ -8,17 +8,25 @@ import com.nafapap.memory.mgmt.economy.transobj.BelongSerialNo;
 import com.nafapap.memory.mgmt.economy.transobj.GoodsVO;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ProcureRequestDto;
-import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.source.entity.ProcureEntity;
-import com.nafapap.memory.source.entity.ThingEntity;
 import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
+import java.text.ParsePosition;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
+
+import static org.apache.commons.lang3.time.DateFormatUtils.ISO_8601_EXTENDED_DATE_FORMAT;
+import static org.apache.commons.lang3.time.DateFormatUtils.ISO_8601_EXTENDED_TIME_FORMAT;
 
 /**
  * <p>Project: memory </p>
@@ -73,6 +81,15 @@ public class ProcureServiceImpl implements ProcureService {
 
         String purchaseSpecific = back;
 
+        String purchaseDatetime = dto.getPurchaseDatetime();
+        String closedDate = dto.getClosedDate();
+
+        DateTimeFormatter formatter11 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter12 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateQ = LocalDate.parse(purchaseDatetime, formatter11);
+        LocalDate dateW = LocalDate.parse(closedDate, formatter12);
+        long actualDay = ChronoUnit.DAYS.between(dateQ, dateW);
+
         ProcureEntity entity = new ProcureEntity()
                 .setSerialNo(serialNoService.generate())
                 .setXGoods(symbol)
@@ -80,15 +97,15 @@ public class ProcureServiceImpl implements ProcureService {
                 .setPurchaseQuantity(dto.getPurchaseQuantity())
                 .setPurchaseSpecific(purchaseSpecific)
                 .setPurchaseLocation(dto.getPurchaseLocation())
-                .setPurchaseDatetime(dto.getPurchaseDatetime())
+                .setPurchaseDatetime(purchaseDatetime)
                 .setPrice(dto.getPrice())
                 .setCurrency(dto.getCurrency())
                 .setChinaYuan(dto.getChinaYuan())
                 .setHold(hold)
                 .setUnit(unit)
                 .setPlanDay(dto.getPlanDay())
-                .setClosedDate(dto.getClosedDate())
-                .setActualDay(dto.getActualDay())
+                .setClosedDate(closedDate)
+                .setActualDay(new Long(actualDay).intValue())
                 ;
         procureRepository.insert(entity);
         return entity;
