@@ -40,8 +40,17 @@
         methods: {
             submitForm: function() {
                 this.$refs.vFormRef.getFormData().then( function(formData) {
-                    // Form Validation OK
-                    alert( JSON.stringify(formData) )
+                    // alert( JSON.stringify(formData) )
+                    $.ajax({
+                        url: '/memory/procure/create',
+                        data: JSON.stringify(formData),
+                        type: "POST",
+                        dataType: "json",
+                        contentType: "application/json;charset=UTF-8",
+                        success: function (response) {
+                            alert(JSON.stringify(response))
+                        }
+                    })
                 }).catch( function(error) {
                     // Form Validation Failed
                     alert(error)
