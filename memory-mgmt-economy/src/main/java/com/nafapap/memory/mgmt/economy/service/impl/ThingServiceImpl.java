@@ -53,7 +53,7 @@ public class ThingServiceImpl implements ThingService {
         }
 
         if (StringUtils.isBlank(dto.getSummary())) {
-            dto.setSummary("这是" + dto.getName());
+            dto.setSummary("这是" + dto.getName() + "。");
         }
         ThingEntity entity = new ThingEntity()
                 .setSerialNo(serialNoService.generate())
