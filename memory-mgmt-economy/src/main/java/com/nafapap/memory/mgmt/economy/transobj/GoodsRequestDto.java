@@ -21,8 +21,10 @@ import java.math.BigDecimal;
 @Data
 public class GoodsRequestDto extends AuthDto {
 
-    @NotBlank
+    //@NotBlank
     private String belongSerialNo;
+    @NotBlank
+    private String thingName;
     private String name;
     private String brand;
     private String summary;
@@ -33,6 +35,14 @@ public class GoodsRequestDto extends AuthDto {
     private String barcode;
     private BigDecimal unitPrice;
     private String unitSpec;
+
+    public NameString getThingName() {
+        return new NameString(name);
+    }
+
+    public BelongSerialNo getBelongSerialNo() {
+        return new BelongSerialNo(belongSerialNo);
+    }
 }
 
 

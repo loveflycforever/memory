@@ -43,8 +43,9 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public GoodsEntity create(GoodsRequestDto dto) {
-        String belongSerialNo = dto.getBelongSerialNo();
-        String symbol = getSymbol(belongSerialNo);
+        //BelongSerialNo belongSerialNo = dto.getBelongSerialNo();
+        NameString thingName = dto.getThingName();
+        String symbol = getSymbol(thingName);
 
         GoodsEntity entity = new GoodsEntity()
                 .setSerialNo(serialNoService.generate())
@@ -63,12 +64,26 @@ public class GoodsServiceImpl implements GoodsService {
         return entity;
     }
 
-    private String getSymbol(String belongSerialNo) {
-        PageDto pageDto = new PageDto();
-        pageDto.setTakingNo(belongSerialNo);
+    private String getSymbol(BelongSerialNo belongSerialNo) {
+        ThingPageDto pageDto = new ThingPageDto();
+        pageDto.setTakingNo(belongSerialNo.getValue());
+        pageDto.onlyOne();
 
         List<ThingEntity> things = thingRepository.select(pageDto);
-        if (CollectionUtils.isEmpty(things) || things.size() != 1) {
+        if (CollectionUtils.isEmpty(things)) {
+            throw new RuntimeException("xxx");
+        }
+
+        return things.get(0).getSymbol();
+    }
+
+    private String getSymbol(NameString nameString) {
+        ThingPageDto pageDto = new ThingPageDto();
+        pageDto.setName(nameString.getValue());
+        pageDto.onlyOne();
+
+        List<ThingEntity> things = thingRepository.select(pageDto);
+        if (CollectionUtils.isEmpty(things)) {
             throw new RuntimeException("xxx");
         }
 

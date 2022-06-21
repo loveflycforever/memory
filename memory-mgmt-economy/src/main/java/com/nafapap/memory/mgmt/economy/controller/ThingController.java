@@ -3,6 +3,7 @@ package com.nafapap.memory.mgmt.economy.controller;
 import com.nafapap.memory.mgmt.economy.service.ThingService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.ThingPageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ThingRequestDto;
 import com.nafapap.memory.source.entity.ThingEntity;
 import com.nafapap.memory.support.web.ResponseView;
@@ -32,7 +33,7 @@ public class ThingController {
     private final ThingService thingService;
 
     @GetMapping("/exhibit")
-    public Object exhibit(PageDto dto) {
+    public Object exhibit(ThingPageDto dto) {
         List<ThingEntity> entities = thingService.exhibit(dto);
         return ResponseView.build(entities);
     }

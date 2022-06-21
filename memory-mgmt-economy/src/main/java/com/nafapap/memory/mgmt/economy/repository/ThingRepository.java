@@ -2,6 +2,7 @@ package com.nafapap.memory.mgmt.economy.repository;
 
 import cn.org.atool.fluent.mybatis.model.StdPagedList;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.mgmt.economy.transobj.ThingPageDto;
 import com.nafapap.memory.source.entity.ThingEntity;
 import com.nafapap.memory.source.entity.TicketEntity;
 import com.nafapap.memory.source.helper.ThingSegment;
@@ -32,10 +33,13 @@ public class ThingRepository {
 
     private final ThingMapper fmThingMapper;
 
-    public List<ThingEntity> select(PageDto dto) {
+    public List<ThingEntity> select(ThingPageDto dto) {
         ThingSegment.QueryWhere queryWhere = new ThingQuery().where.deleteFlag().isFalse();
         if(StringUtils.isNotBlank(dto.getTakingNo())) {
             queryWhere.and.serialNo().eq(dto.getTakingNo());
+        }
+        if(StringUtils.isNotBlank(dto.getName())) {
+            queryWhere.and.name().eq(dto.getName());
         }
         ThingQuery query = queryWhere.end();
         StdPagedList<ThingEntity> list = fmThingMapper.stdPagedEntity(

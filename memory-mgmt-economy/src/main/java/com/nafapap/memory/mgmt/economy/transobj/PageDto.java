@@ -33,6 +33,11 @@ public class PageDto extends AuthDto {
      */
     private Integer number;
 
+    public void onlyOne() {
+        this.size = DEFAULT_NUMBER;
+        this.number = DEFAULT_NUMBER;
+    }
+
     public Integer getNumber() {
         return this.number != null && this.number >= DEFAULT_NUMBER ? this.number : DEFAULT_NUMBER;
     }
