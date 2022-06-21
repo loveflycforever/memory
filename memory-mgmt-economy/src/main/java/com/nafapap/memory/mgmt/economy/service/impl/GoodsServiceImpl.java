@@ -69,7 +69,7 @@ public class GoodsServiceImpl implements GoodsService {
         pageDto.setTakingNo(belongSerialNo.getValue());
         pageDto.onlyOne();
 
-        List<ThingEntity> things = thingRepository.select(pageDto);
+        List<ThingVO> things = thingRepository.select(pageDto);
         if (CollectionUtils.isEmpty(things)) {
             throw new RuntimeException("xxx");
         }
@@ -82,7 +82,7 @@ public class GoodsServiceImpl implements GoodsService {
         pageDto.setName(nameString.getValue());
         pageDto.onlyOne();
 
-        List<ThingEntity> things = thingRepository.select(pageDto);
+        List<ThingVO> things = thingRepository.select(pageDto);
         if (CollectionUtils.isEmpty(things)) {
             throw new RuntimeException("xxx");
         }

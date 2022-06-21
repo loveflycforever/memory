@@ -3,6 +3,7 @@ package com.nafapap.memory.mgmt.economy.repository;
 import cn.org.atool.fluent.mybatis.model.StdPagedList;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ThingPageDto;
+import com.nafapap.memory.mgmt.economy.transobj.ThingVO;
 import com.nafapap.memory.source.entity.ThingEntity;
 import com.nafapap.memory.source.entity.TicketEntity;
 import com.nafapap.memory.source.helper.ThingSegment;
@@ -12,6 +13,7 @@ import com.nafapap.memory.source.mapper.ThingMapper;
 import com.nafapap.memory.source.wrapper.ThingQuery;
 import com.nafapap.memory.source.wrapper.TicketQuery;
 import lombok.RequiredArgsConstructor;
+import ma.glasnost.orika.MapperFacade;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +35,9 @@ public class ThingRepository {
 
     private final ThingMapper fmThingMapper;
 
-    public List<ThingEntity> select(ThingPageDto dto) {
+    private final MapperFacade mapperFacade;
+
+    public List<ThingVO> select(ThingPageDto dto) {
         ThingSegment.QueryWhere queryWhere = new ThingQuery().where.deleteFlag().isFalse();
         if(StringUtils.isNotBlank(dto.getTakingNo())) {
             queryWhere.and.serialNo().eq(dto.getTakingNo());
@@ -47,7 +51,10 @@ public class ThingRepository {
                         .limit(dto.gainFrom(), dto.gainLimit())
         );
 
-        return list.getData();
+        List<ThingEntity> data = list.getData();
+        List<ThingVO> result = mapperFacade.mapAsList(data, ThingVO.class);
+
+        return result;
     }
 
     public Long insert(ThingEntity entity) {

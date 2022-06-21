@@ -7,6 +7,7 @@ import com.nafapap.memory.mgmt.economy.service.ThingService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ThingPageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ThingRequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.ThingVO;
 import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.source.entity.ThingEntity;
 import com.nafapap.memory.support.web.constraints.SerialNo;
@@ -43,7 +44,7 @@ public class ThingServiceImpl implements ThingService {
     private final SerialNoService serialNoService;
 
     @Override
-    public List<ThingEntity> exhibit(ThingPageDto dto) {
+    public List<ThingVO> exhibit(ThingPageDto dto) {
         return thingRepository.select(dto);
     }
 

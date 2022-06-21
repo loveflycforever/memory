@@ -3,6 +3,7 @@ package com.nafapap.memory.mgmt.economy.service;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ThingPageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ThingRequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.ThingVO;
 import com.nafapap.memory.source.entity.ThingEntity;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
  * @version v1.0
  */
 public interface ThingService {
-    List<ThingEntity> exhibit(ThingPageDto dto);
+    List<ThingVO> exhibit(ThingPageDto dto);
 
     ThingEntity create(ThingRequestDto dto);
 }
