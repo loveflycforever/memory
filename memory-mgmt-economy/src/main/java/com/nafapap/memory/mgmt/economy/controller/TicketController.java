@@ -3,6 +3,7 @@ package com.nafapap.memory.mgmt.economy.controller;
 import com.nafapap.memory.mgmt.economy.service.TicketService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.TicketRequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.TicketVO;
 import com.nafapap.memory.source.entity.TicketEntity;
 import com.nafapap.memory.support.web.ResponseView;
 import io.swagger.annotations.Api;
@@ -34,7 +35,7 @@ public class TicketController {
     @ApiOperation("展示")
     @GetMapping("/exhibit")
     public Object exhibit(PageDto dto) {
-        List<TicketEntity> entities = ticketService.exhibit(dto);
+        List<TicketVO> entities = ticketService.exhibit(dto);
         return ResponseView.build(entities);
     }
 

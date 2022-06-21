@@ -2,11 +2,14 @@ package com.nafapap.memory.mgmt.economy.repository;
 
 import cn.org.atool.fluent.mybatis.model.StdPagedList;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.mgmt.economy.transobj.ThingVO;
+import com.nafapap.memory.mgmt.economy.transobj.TicketVO;
 import com.nafapap.memory.source.entity.TicketEntity;
 import com.nafapap.memory.source.helper.TicketSegment;
 import com.nafapap.memory.source.mapper.TicketMapper;
 import com.nafapap.memory.source.wrapper.TicketQuery;
 import lombok.RequiredArgsConstructor;
+import ma.glasnost.orika.MapperFacade;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -25,9 +28,12 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class TicketRepository {
+
     private final TicketMapper fmTicketMapper;
 
-    public List<TicketEntity> select(PageDto dto) {
+    private final MapperFacade mapperFacade;
+
+    public List<TicketVO> select(PageDto dto) {
         TicketSegment.QueryWhere queryWhere = new TicketQuery().where.deleteFlag().isFalse();
         if(StringUtils.isNotBlank(dto.getTakingNo())) {
             queryWhere.and.serialNo().eq(dto.getTakingNo());
@@ -38,7 +44,10 @@ public class TicketRepository {
                 .limit(dto.gainFrom(), dto.gainLimit())
         );
 
-        return list.getData();
+        List<TicketEntity> data = list.getData();
+        List<TicketVO> result = mapperFacade.mapAsList(data, TicketVO.class);
+
+        return result;
     }
 
     public Long insert(TicketEntity entity) {

@@ -2,6 +2,7 @@ package com.nafapap.memory.mgmt.economy.service;
 
 import com.nafapap.memory.mgmt.economy.transobj.SubjectRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.mgmt.economy.transobj.SubjectVO;
 import com.nafapap.memory.source.entity.SubjectEntity;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  * @version v1.0
  */
 public interface SubjectService {
-    List<SubjectEntity> exhibit(PageDto dto);
+    List<SubjectVO> exhibit(PageDto dto);
 
     SubjectEntity create(SubjectRequestDto dto);
 }

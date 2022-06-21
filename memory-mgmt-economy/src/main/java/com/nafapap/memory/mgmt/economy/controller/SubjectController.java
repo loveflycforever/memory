@@ -3,6 +3,7 @@ package com.nafapap.memory.mgmt.economy.controller;
 import com.nafapap.memory.mgmt.economy.service.SubjectService;
 import com.nafapap.memory.mgmt.economy.transobj.SubjectRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.mgmt.economy.transobj.SubjectVO;
 import com.nafapap.memory.source.entity.SubjectEntity;
 import com.nafapap.memory.support.web.ResponseView;
 import io.swagger.annotations.Api;
@@ -32,7 +33,7 @@ public class SubjectController {
 
     @GetMapping("/exhibit")
     public Object exhibit(PageDto dto) {
-        List<SubjectEntity> entities = subjectService.exhibit(dto);
+        List<SubjectVO> entities = subjectService.exhibit(dto);
         return ResponseView.build(entities);
     }
 

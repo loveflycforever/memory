@@ -32,7 +32,7 @@ public class TicketServiceImpl implements TicketService {
     private final SerialNoService serialNoService;
 
     @Override
-    public List<TicketEntity> exhibit(PageDto dto) {
+    public List<TicketVO> exhibit(PageDto dto) {
         return ticketRepository.select(dto);
     }
 

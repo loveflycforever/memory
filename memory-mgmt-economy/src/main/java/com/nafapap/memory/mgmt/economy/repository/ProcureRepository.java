@@ -2,6 +2,8 @@ package com.nafapap.memory.mgmt.economy.repository;
 
 import cn.org.atool.fluent.mybatis.model.StdPagedList;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.mgmt.economy.transobj.ProcureVO;
+import com.nafapap.memory.mgmt.economy.transobj.TicketVO;
 import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.source.entity.ProcureEntity;
 import com.nafapap.memory.source.helper.GoodsSegment;
@@ -11,6 +13,7 @@ import com.nafapap.memory.source.mapper.ProcureMapper;
 import com.nafapap.memory.source.wrapper.GoodsQuery;
 import com.nafapap.memory.source.wrapper.ProcureQuery;
 import lombok.RequiredArgsConstructor;
+import ma.glasnost.orika.MapperFacade;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +35,9 @@ public class ProcureRepository {
 
     private final ProcureMapper fmProcureMapper;
 
-    public List<ProcureEntity> select(PageDto dto) {
+    private final MapperFacade mapperFacade;
+
+    public List<ProcureVO> select(PageDto dto) {
         ProcureSegment.QueryWhere queryWhere = new ProcureQuery().where.deleteFlag().isFalse();
         if(StringUtils.isNotBlank(dto.getTakingNo())) {
             queryWhere.and.serialNo().eq(dto.getTakingNo());
@@ -43,7 +48,10 @@ public class ProcureRepository {
                         .limit(dto.gainFrom(), dto.gainLimit())
         );
 
-        return list.getData();
+        List<ProcureEntity> data = list.getData();
+        List<ProcureVO> result = mapperFacade.mapAsList(data, ProcureVO.class);
+
+        return result;
     }
 
     public Long insert(ProcureEntity entity) {

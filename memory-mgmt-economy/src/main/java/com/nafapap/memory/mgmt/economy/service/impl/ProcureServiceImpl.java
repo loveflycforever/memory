@@ -4,10 +4,7 @@ import com.nafapap.memory.mgmt.economy.repository.GoodsRepository;
 import com.nafapap.memory.mgmt.economy.repository.ProcureRepository;
 import com.nafapap.memory.mgmt.economy.service.ProcureService;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
-import com.nafapap.memory.mgmt.economy.transobj.BelongSerialNo;
-import com.nafapap.memory.mgmt.economy.transobj.GoodsVO;
-import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.ProcureRequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.*;
 import com.nafapap.memory.source.entity.ProcureEntity;
 import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +46,7 @@ public class ProcureServiceImpl implements ProcureService {
     private final SerialNoService serialNoService;
 
     @Override
-    public List<ProcureEntity> exhibit(PageDto dto) {
+    public List<ProcureVO> exhibit(PageDto dto) {
         return procureRepository.select(dto);
     }
 

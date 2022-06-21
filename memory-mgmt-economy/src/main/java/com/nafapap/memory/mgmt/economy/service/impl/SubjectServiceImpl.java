@@ -5,6 +5,7 @@ import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.SubjectService;
 import com.nafapap.memory.mgmt.economy.transobj.SubjectRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
+import com.nafapap.memory.mgmt.economy.transobj.SubjectVO;
 import com.nafapap.memory.source.entity.SubjectEntity;
 import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class SubjectServiceImpl implements SubjectService {
     private final SerialNoService serialNoService;
 
     @Override
-    public List<SubjectEntity> exhibit(PageDto dto) {
+    public List<SubjectVO> exhibit(PageDto dto) {
         return subjectRepository.select(dto);
     }
 

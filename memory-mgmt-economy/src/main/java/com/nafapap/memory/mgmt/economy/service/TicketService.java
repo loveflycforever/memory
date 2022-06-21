@@ -2,6 +2,7 @@ package com.nafapap.memory.mgmt.economy.service;
 
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.TicketRequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.TicketVO;
 import com.nafapap.memory.source.entity.TicketEntity;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  * @version v1.0
  */
 public interface TicketService {
-    List<TicketEntity> exhibit(PageDto dto);
+    List<TicketVO> exhibit(PageDto dto);
 
     TicketEntity create(TicketRequestDto dto);
 }

@@ -3,6 +3,7 @@ package com.nafapap.memory.mgmt.economy.controller;
 import com.nafapap.memory.mgmt.economy.service.ProcureService;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ProcureRequestDto;
+import com.nafapap.memory.mgmt.economy.transobj.ProcureVO;
 import com.nafapap.memory.mgmt.economy.transobj.RequestDto;
 import com.nafapap.memory.source.entity.ProcureEntity;
 import com.nafapap.memory.support.web.ResponseView;
@@ -33,7 +34,7 @@ public class ProcureController {
 
     @GetMapping("/exhibit")
     public Object exhibit(PageDto dto) {
-        List<ProcureEntity> entities = procureService.exhibit(dto);
+        List<ProcureVO> entities = procureService.exhibit(dto);
         return ResponseView.build(entities);
     }
 
