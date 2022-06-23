@@ -1,18 +1,18 @@
-
 //菜单数组
 const menuArray = [
-    { id: 1, url: './goods.html', name: '商品' },
-    { id: 2, url: './goods_tb.html', name: '商品表格' },
-    { id: 3, url: './procure.html', name: '采购' },
-    { id: 4, url: './procure_tb.html', name: '采购表格' },
-    { id: 5, url: './thing.html', name: '物品' },
-    { id: 6, url: './thing_tb.html', name: '物品表格' },
-    { id: 7, url: './ticket.html', name: '账单' },
-    { id: 8, url: './ticket_tb.html', name: '账单表格' },
+    {id: 1, url: './goods.html', name: '商品'},
+    {id: 2, url: './goods_tb.html', name: '商品表格'},
+    {id: 3, url: './procure.html', name: '采购'},
+    {id: 4, url: './procure_tb.html', name: '采购表格'},
+    {id: 5, url: './thing.html', name: '物品'},
+    {id: 6, url: './thing_tb.html', name: '物品表格'},
+    {id: 7, url: './ticket.html', name: '账单'},
+    {id: 8, url: './ticket_tb.html', name: '账单表格'},
 ];
 //储存切换的tab菜单
 var tabmune = [];
 showMenu();
+
 //循环显示左边菜单
 function showMenu() {
     let Html = "";
@@ -21,8 +21,10 @@ function showMenu() {
     });
     $("#menu").html(Html);
 }
+
 //默认加载第一个菜单
 toPage(menuArray[0].id, menuArray[0].url, menuArray[0].name)
+
 //点击菜单跳转界面
 function toPage(id, url, menuname) {
     //记住路由
@@ -42,11 +44,13 @@ function toPage(id, url, menuname) {
 function addOrRemoveTab(id, url, menuname) {
     // 如果数组中不存在
     if ($.inArray(id, tabmune) == -1) {
-        if (tabmune.length + 1 <= 5) {
+        var maxOne = 10;
+
+        if (tabmune.length + 1 <= maxOne + 1) {
             addtab(id, url, menuname)
         } else {
             //超过五个先删除
-            let rid = tabmune[4];
+            let rid = tabmune[maxOne];
             $("div[id='div" + rid + "']").remove();
             tabmune.splice($.inArray(rid, tabmune), 1);
             delpage(rid);
@@ -59,8 +63,9 @@ function addOrRemoveTab(id, url, menuname) {
         addcolor(div);
         showpage(id);
         return;
-    };
+    }
 }
+
 //抽离的公共方法，用于添加tabul和tabmune数组
 function addtab(id, url, menuname) {
     //再添加
@@ -82,6 +87,7 @@ function selectTab(obj, id, url, menuname) {
     addcolor($(obj));
     showpage(id);
 }
+
 //从tab栏中移除
 function removeTab(obj, id) {
     event.stopPropagation(); //防止触发父级div的onclick事件
