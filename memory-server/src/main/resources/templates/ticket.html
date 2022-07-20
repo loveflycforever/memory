@@ -438,8 +438,8 @@
                             "icon": "number-field",
                             "formItemFlag": true,
                             "options": {
-                                "name": "expense",
-                                "label": "实际支出",
+                                "name": "expense_sub",
+                                "label": "实际折扣",
                                 "labelAlign": "",
                                 "defaultValue": 0,
                                 "placeholder": "",
@@ -782,6 +782,7 @@
             submitForm: function () {
                 this.$refs.vFormRef.getFormData().then(function (formData) {
                     formData.purchaseDatetime = formData.purchaseDate + ' ' + formData.purchaseTime
+                    formData.expense = formData.price - formData.expense_sub
                     // alert(JSON.stringify(formData))
                     $.ajax({
                         url: '/memory/ticket/create',
