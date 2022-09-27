@@ -1,11 +1,7 @@
 package com.nafapap.memory.mgmt.economy.service;
 
-import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.TicketRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.TicketVO;
-import com.nafapap.memory.source.entity.TicketEntity;
-
-import java.util.List;
 
 /**
  * <p>Project: memory </p>
@@ -17,8 +13,6 @@ import java.util.List;
  * @author yuchaofan
  * @version v1.0
  */
-public interface TicketService {
-    List<TicketVO> exhibit(PageDto dto);
+public interface TicketService extends Serviceable<TicketRequestDto, TicketVO> {
 
-    TicketEntity create(TicketRequestDto dto);
 }

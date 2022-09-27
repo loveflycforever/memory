@@ -113,7 +113,7 @@ public class ProcureServiceImpl implements ProcureService {
         pageDto.setTakingNo(belongSerialNo.getValue());
         pageDto.onlyOne();
 
-        List<GoodsVO> goodsEntities = goodsRepository.select(pageDto);
+        List<GoodsVO> goodsEntities = goodsRepository.select(pageDto, GoodsVO.class);
         if (CollectionUtils.isEmpty(goodsEntities)) {
             throw new RuntimeException("xxx");
         }
@@ -126,7 +126,7 @@ public class ProcureServiceImpl implements ProcureService {
         pageDto.setTakingNo(belongSerialNo.getValue());
         pageDto.onlyOne();
 
-        List<GoodsVO> goodsEntities = goodsRepository.select(pageDto);
+        List<GoodsVO> goodsEntities = goodsRepository.select(pageDto, GoodsVO.class);
         if (CollectionUtils.isEmpty(goodsEntities)) {
             throw new RuntimeException("xxx");
         }

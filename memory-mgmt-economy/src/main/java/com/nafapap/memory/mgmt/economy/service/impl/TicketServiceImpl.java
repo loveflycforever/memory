@@ -3,6 +3,8 @@ package com.nafapap.memory.mgmt.economy.service.impl;
 import com.nafapap.memory.mgmt.economy.repository.TicketRepository;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.TicketService;
+import com.nafapap.memory.mgmt.economy.service.observer.MemoryEventPublisher4Spring;
+import com.nafapap.memory.mgmt.economy.service.observer.TicketEvent;
 import com.nafapap.memory.mgmt.economy.transobj.*;
 import com.nafapap.memory.source.entity.TicketEntity;
 import com.nafapap.memory.support.web.constraints.SerialNo;
@@ -25,7 +27,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @SerialNo(prefix = "tk")
-public class TicketServiceImpl implements TicketService {
+public class TicketServiceImpl extends MemoryEventPublisher4Spring implements TicketService {
 
     private final TicketRepository ticketRepository;
 
@@ -33,13 +35,55 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<TicketVO> exhibit(PageDto dto) {
-        return ticketRepository.select(dto);
+        return ticketRepository.select(dto, TicketVO.class);
     }
 
     @Override
-    public TicketEntity create(TicketRequestDto dto) {
-        TicketEntity entity = new TicketEntity()
-                .setSerialNo(serialNoService.generate())
+    public TicketVO create(TicketRequestDto dto) {
+        TicketEntity entity = convert2Entity(dto);
+        entity.setStatus(StatusEnum.CONFIRM.name())
+                .setSerialNo(serialNoService.generate());
+        ticketRepository.insert(entity);
+        return ticketRepository.toVO(entity, TicketVO.class);
+    }
+
+    @Override
+    public TicketVO prepare(TicketRequestDto dto) {
+        TicketEntity entity = convert2Entity(dto);
+        entity.setStatus(StatusEnum.PREPARE.name())
+                .setSerialNo(serialNoService.generate());
+        ticketRepository.insert(entity);
+        return ticketRepository.toVO(entity, TicketVO.class);
+    }
+
+    @Override
+    public TicketVO confirm(TicketRequestDto dto) {
+
+        Long rowId = dto.getId();
+        TicketEntity ticketEntity = ticketRepository.selectByPk(new TicketEntity());
+        //if(ticketEntity)
+        TicketEntity entity = new TicketEntity().setId(rowId)
+                .setStatus(StatusEnum.CONFIRM.name());
+        ticketRepository.update(entity);
+
+        String serialNo = ticketEntity.getSerialNo();
+        this.methodToMonitor(serialNo);
+        return ticketRepository.toVO(entity, TicketVO.class);
+    }
+
+    @Override
+    public void methodToMonitor(Object serialNo) {
+        TicketEvent ticketEvent = new TicketEvent(serialNo, "");
+        publishEvent("", ticketEvent);
+    }
+
+    @Override
+    public TicketVO cancel(TicketRequestDto dto) {
+        return null;
+    }
+
+    private TicketEntity convert2Entity(TicketRequestDto dto) {
+        return new TicketEntity()
                 .setName(dto.getName())
                 .setSummary(dto.getSummary())
                 .setPurchaseLocation(dto.getPurchaseLocation())
@@ -47,11 +91,14 @@ public class TicketServiceImpl implements TicketService {
                 .setPrice(dto.getPrice())
                 .setExpense(dto.getExpense())
                 .setCurrency(CurrencyEnum.valueOf(dto.getCurrency()).name())
-                .setChinaYuan(CurrencyEnum.valueOf(dto.getCurrency()) != CurrencyEnum.CNY ? BigDecimal.ZERO : dto.getExpense())
+                .setChinaYuan(exchange2ChinaYuan(dto))
                 .setChannel(ChannelEnum.valueOf(dto.getChannel()).getValue())
                 .setPayment(PaymentEnum.valueOf(dto.getPayment()).getValue())
                 .setForward(ForwardEnum.valueOf(dto.getForward()).getValue());
-        ticketRepository.insert(entity);
-        return entity;
     }
+
+    private BigDecimal exchange2ChinaYuan(TicketRequestDto dto) {
+        return CurrencyEnum.valueOf(dto.getCurrency()) != CurrencyEnum.CNY ? BigDecimal.ZERO : dto.getExpense();
+    }
+
 }

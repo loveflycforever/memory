@@ -18,7 +18,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 @Data
 public class PageDto extends AuthDto {
 
-    private static final Integer DEFAULT_SIZE = 25;
+    private static final Integer DEFAULT_SIZE = 100;
     private static final Integer DEFAULT_NUMBER = 1;
 
     private String takingNo;

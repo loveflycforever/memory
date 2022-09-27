@@ -1,14 +1,11 @@
 package com.nafapap.memory.mgmt.economy.service.impl;
 
 import com.nafapap.memory.mgmt.economy.repository.ThingRepository;
-import com.nafapap.memory.mgmt.economy.repository.TicketRepository;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
 import com.nafapap.memory.mgmt.economy.service.ThingService;
-import com.nafapap.memory.mgmt.economy.transobj.PageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ThingPageDto;
 import com.nafapap.memory.mgmt.economy.transobj.ThingRequestDto;
 import com.nafapap.memory.mgmt.economy.transobj.ThingVO;
-import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.source.entity.ThingEntity;
 import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +15,6 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 

@@ -1,18 +1,19 @@
 package com.nafapap.memory.mgmt.economy.repository;
 
 import cn.org.atool.fluent.mybatis.model.StdPagedList;
+import com.nafapap.memory.mgmt.economy.repository.base.AbstractRepository;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.ThingVO;
 import com.nafapap.memory.mgmt.economy.transobj.TicketVO;
 import com.nafapap.memory.source.entity.TicketEntity;
 import com.nafapap.memory.source.helper.TicketSegment;
 import com.nafapap.memory.source.mapper.TicketMapper;
 import com.nafapap.memory.source.wrapper.TicketQuery;
-import lombok.RequiredArgsConstructor;
-import ma.glasnost.orika.MapperFacade;
+import com.nafapap.memory.source.wrapper.TicketUpdate;
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -26,32 +27,35 @@ import java.util.List;
  * @version v1.0
  */
 @Component
-@RequiredArgsConstructor
-public class TicketRepository {
+@Getter
+public class TicketRepository extends AbstractRepository<TicketEntity, TicketQuery, TicketUpdate, TicketVO> {
 
-    private final TicketMapper fmTicketMapper;
+    @Resource(name = "fmTicketMapper")
+    private TicketMapper mapper;
 
-    private final MapperFacade mapperFacade;
-
-    public List<TicketVO> select(PageDto dto) {
+    @Override
+    public List<TicketEntity> select(PageDto dto) {
         TicketSegment.QueryWhere queryWhere = new TicketQuery().where.deleteFlag().isFalse();
         if(StringUtils.isNotBlank(dto.getTakingNo())) {
             queryWhere.and.serialNo().eq(dto.getTakingNo());
         }
         TicketQuery query = queryWhere.end();
-        StdPagedList<TicketEntity> list = fmTicketMapper.stdPagedEntity(
+        StdPagedList<TicketEntity> list = getMapper().stdPagedEntity(
                 query.orderBy.purchaseDatetime().desc().end()
                 .limit(dto.gainFrom(), dto.gainLimit())
         );
 
-        List<TicketEntity> data = list.getData();
-        List<TicketVO> result = mapperFacade.mapAsList(data, TicketVO.class);
-
-        return result;
+        return list.getData();
     }
 
-    public Long insert(TicketEntity entity) {
-        return fmTicketMapper.save(entity);
+    public void updateIfStatusPrepare(TicketEntity entity) {
+        TicketUpdate update = new TicketUpdate()
+                .where
+                .id()
+                .eq(entity.getId())
+                .deleteFlag().isFalse()
+                .status().eq("prepare")
+                .end();
+        getMapper().updateBy(update);
     }
-
 }

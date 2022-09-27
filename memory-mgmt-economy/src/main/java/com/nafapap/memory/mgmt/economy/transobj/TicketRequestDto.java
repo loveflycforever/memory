@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 @Data
 public class TicketRequestDto extends AuthDto {
 
+    private Long id;
     private String name;
     private String summary;
     private String purchaseLocation;

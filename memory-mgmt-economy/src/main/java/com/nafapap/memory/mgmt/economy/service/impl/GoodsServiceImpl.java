@@ -4,16 +4,16 @@ import com.nafapap.memory.mgmt.economy.repository.GoodsRepository;
 import com.nafapap.memory.mgmt.economy.repository.ThingRepository;
 import com.nafapap.memory.mgmt.economy.service.GoodsService;
 import com.nafapap.memory.mgmt.economy.service.SerialNoService;
+import com.nafapap.memory.mgmt.economy.service.observer.MeListener;
+import com.nafapap.memory.mgmt.economy.service.observer.MemoryEvent;
+import com.nafapap.memory.mgmt.economy.service.observer.MemoryEventListener;
 import com.nafapap.memory.mgmt.economy.transobj.*;
 import com.nafapap.memory.source.entity.GoodsEntity;
-import com.nafapap.memory.source.entity.ThingEntity;
-import com.nafapap.memory.source.entity.TicketEntity;
 import com.nafapap.memory.support.web.constraints.SerialNo;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -29,7 +29,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @SerialNo(prefix = "gd")
-public class GoodsServiceImpl implements GoodsService {
+@MeListener(publisher = TicketServiceImpl.class)
+public class GoodsServiceImpl implements GoodsService, MemoryEventListener {
 
     private final GoodsRepository goodsRepository;
     private final ThingRepository thingRepository;
@@ -38,30 +39,53 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public List<GoodsVO> exhibit(PageDto dto) {
-        return goodsRepository.select(dto);
+        return goodsRepository.select(dto, GoodsVO.class);
     }
 
     @Override
-    public GoodsEntity create(GoodsRequestDto dto) {
+    public GoodsVO create(GoodsRequestDto dto) {
         //BelongSerialNo belongSerialNo = dto.getBelongSerialNo();
+
+        GoodsEntity entity = convert2Entity(dto);
+
+
         NameString thingName = dto.getThingName();
         String symbol = getSymbol(thingName);
+        entity.setXThing(symbol);
 
-        GoodsEntity entity = new GoodsEntity()
-                .setSerialNo(serialNoService.generate())
-                .setXThing(symbol)
-                .setBrand(dto.getBrand())
-                .setName(dto.getName())
-                .setSummary(dto.getSummary())
-                .setProductionDate(dto.getProductionDate())
-                .setValidationTerm(dto.getValidationTerm())
-                .setValidationUnit(dto.getValidationUnit())
-                .setExpirationDate(dto.getExpirationDate())
-                .setBarcode(dto.getBarcode())
-                .setUnitPrice(dto.getUnitPrice())
-                .setUnitSpec(dto.getUnitSpec());
+
+        entity.setSerialNo(serialNoService.generate());
         goodsRepository.insert(entity);
-        return entity;
+        return goodsRepository.toVO(entity, GoodsVO.class);
+    }
+
+    private GoodsEntity convert2Entity(GoodsRequestDto dto) {
+        return new GoodsEntity()
+                    .setBrand(dto.getBrand())
+                    .setName(dto.getName())
+                    .setSummary(dto.getSummary())
+                    .setProductionDate(dto.getProductionDate())
+                    .setValidationTerm(dto.getValidationTerm())
+                    .setValidationUnit(dto.getValidationUnit())
+                    .setExpirationDate(dto.getExpirationDate())
+                    .setBarcode(dto.getBarcode())
+                    .setUnitPrice(dto.getUnitPrice())
+                    .setUnitSpec(dto.getUnitSpec());
+    }
+
+    @Override
+    public GoodsVO prepare(GoodsRequestDto goodsRequestDto) {
+        return null;
+    }
+
+    @Override
+    public GoodsVO confirm(GoodsRequestDto goodsRequestDto) {
+        return null;
+    }
+
+    @Override
+    public GoodsVO cancel(GoodsRequestDto dto) {
+        return null;
     }
 
     private String getSymbol(BelongSerialNo belongSerialNo) {
@@ -88,5 +112,20 @@ public class GoodsServiceImpl implements GoodsService {
         }
 
         return things.get(0).getSymbol();
+    }
+
+    @Override
+    public <E extends MemoryEvent> void onMethodBegin(E event) {
+
+    }
+
+    @Override
+    public <E extends MemoryEvent> void onMethodEnd(E event) {
+
+    }
+
+    @Override
+    public <E extends MemoryEvent> void doSomething(E event) {
+
     }
 }

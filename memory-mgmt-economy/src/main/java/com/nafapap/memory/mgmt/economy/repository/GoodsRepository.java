@@ -1,18 +1,19 @@
 package com.nafapap.memory.mgmt.economy.repository;
 
 import cn.org.atool.fluent.mybatis.model.StdPagedList;
+import com.nafapap.memory.mgmt.economy.repository.base.AbstractRepository;
 import com.nafapap.memory.mgmt.economy.transobj.GoodsVO;
 import com.nafapap.memory.mgmt.economy.transobj.PageDto;
-import com.nafapap.memory.mgmt.economy.transobj.ThingVO;
 import com.nafapap.memory.source.entity.GoodsEntity;
 import com.nafapap.memory.source.helper.GoodsSegment;
 import com.nafapap.memory.source.mapper.GoodsMapper;
 import com.nafapap.memory.source.wrapper.GoodsQuery;
-import lombok.RequiredArgsConstructor;
-import ma.glasnost.orika.MapperFacade;
+import com.nafapap.memory.source.wrapper.GoodsUpdate;
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -26,31 +27,24 @@ import java.util.List;
  * @version v1.0
  */
 @Component
-@RequiredArgsConstructor
-public class GoodsRepository {
+@Getter
+public class GoodsRepository
+        extends AbstractRepository<GoodsEntity, GoodsQuery, GoodsUpdate, GoodsVO> {
 
-    private final GoodsMapper fmGoodsMapper;
+    @Resource(name = "fmGoodsMapper")
+    private GoodsMapper mapper;
 
-    private final MapperFacade mapperFacade;
-
-    public List<GoodsVO> select(PageDto dto) {
+    @Override
+    public List<GoodsEntity> select(PageDto dto) {
         GoodsSegment.QueryWhere queryWhere = new GoodsQuery().where.deleteFlag().isFalse();
-        if(StringUtils.isNotBlank(dto.getTakingNo())) {
+        if (StringUtils.isNotBlank(dto.getTakingNo())) {
             queryWhere.and.serialNo().eq(dto.getTakingNo());
         }
         GoodsQuery query = queryWhere.end();
-        StdPagedList<GoodsEntity> list = fmGoodsMapper.stdPagedEntity(
+        StdPagedList<GoodsEntity> list = getMapper().stdPagedEntity(
                 query.orderBy.id().desc().end()
                         .limit(dto.gainFrom(), dto.gainLimit())
         );
-
-        List<GoodsEntity> data = list.getData();
-        List<GoodsVO> result = mapperFacade.mapAsList(data, GoodsVO.class);
-
-        return result;
-    }
-
-    public Long insert(GoodsEntity entity) {
-        return fmGoodsMapper.save(entity);
+        return list.getData();
     }
 }
